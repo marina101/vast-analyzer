@@ -1,0 +1,8 @@
+inherit_from:
+  - style/ruby/style.yml
+
+Rails:
+  Enabled: false
+
+AllCops:
+  TargetRubyVersion: 2.3
