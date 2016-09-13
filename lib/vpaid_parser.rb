@@ -1,5 +1,5 @@
-require "vpaid_parser/version"
+require 'vpaid_parser/version'
 
-module VpaidParser
+class VpaidParser
   # Your code goes here...
 end
