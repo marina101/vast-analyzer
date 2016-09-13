@@ -15,6 +15,7 @@ module VpaidParser
 	  end
 
 	  def categorize
+	  	# note: need to throw exception if its not a vast at all
 	  	if include_flash_vpaid? && include_js?
 	  	  'flash_js'
 	  	elsif include_flash_vpaid? 
