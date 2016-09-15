@@ -9,12 +9,13 @@ module VpaidParser
   class Parser
     attr_accessor :vast
 
-    def initialize(url)
+    def initialize(url, max_redirects = 5)
       begin
         @vast = Nokogiri::HTML(open(url))
       rescue
         raise ArgumentError.new('Invalid url')
       end
+      @max_depth = max_redirects
       unwrap unless @vast.xpath('//vastadtaguri').empty?
       @mediafiles = @vast.xpath('//mediafile')
       raise NotVastError.new('Error: not vast') if @vast.xpath('//vast').empty?
@@ -35,7 +36,7 @@ module VpaidParser
     private
 
     def unwrap
-      5.times do
+      @max_depth.times do
         return if @vast.xpath('//vastadtaguri').empty?
         begin
           url = @vast.xpath('//vastadtaguri')[0].content
