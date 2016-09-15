@@ -30,7 +30,7 @@ parser.categorize
 
 It will return one of four possible options: 'flash_js_vpaid', 'flash_vpaid', 'js_vpaid', 'neither'
 
-Initializing a parser or calling categorize may also return an error if there is a problem with the url or the wrapper redirect url, if its not a vast link, or if the wrapper redirects more than five times. Its up to the user to handle the errors.
+Initializing a parser or calling categorize may also return an error subtype of the Error class if there is a problem with the url or the wrapper redirect url, if its not a vast link, or if the wrapper redirects more than five times.
 
 ## Development
 

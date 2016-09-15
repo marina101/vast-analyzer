@@ -12,7 +12,7 @@ module VpaidParser
       begin
         @vast = Nokogiri::HTML(open(url))
       rescue
-        raise ArgumentError.new('Invalid url')
+        raise ErrorOpeningUrl.new('Error opening url')
       end
       @max_depth = max_redirects
       unwrap unless @vast.xpath('//vastadtaguri').empty?
@@ -41,7 +41,7 @@ module VpaidParser
           url = @vast.xpath('//vastadtaguri')[0].content
           @vast = Nokogiri::HTML(open(url))
         rescue
-          raise ArgumentError.new('Invalid wrapper redirect url')
+          raise WrapperRedirectError.new('Error with opening the wrapper url')
         end
       end
       raise WrapperDepthError.new('Error: Wrapper depth exceeds five redirects')

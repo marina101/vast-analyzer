@@ -1,0 +1,50 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://demo.tremorvideo.com/proddev/vast/vast_wrapper_linear_2.xml
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 15 Sep 2016 15:18:04 GMT
+      Server:
+      - Apache
+      Last-Modified:
+      - Mon, 08 Mar 2010 21:11:51 GMT
+      Etag:
+      - '"26d7eb-4c8-8388f3c0"'
+      Accept-Ranges:
+      - bytes
+      Content-Length:
+      - '1224'
+      Connection:
+      - close
+      Content-Type:
+      - text/xml
+    body:
+      encoding: UTF-8
+      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<VAST version=\"2.0\">\n
+        \ <Ad id=\"602833\">\n  <Wrapper>\n    <AdSystem>Acudeo Compatible</AdSystem>\n
+        \   <VASTAdTagURI>blablabla</VASTAdTagURI>\n
+        \   <Impression>http://myTrackingURL/wrapper/impression</Impression>\n\t<Creatives>\n\t\t<Creative
+        AdID=\"602833\">\n\t\t\t<Linear>\n\t\t\t\t<TrackingEvents>\n\t\t\t\t</TrackingEvents>\n\t\t\t</Linear>\n\t\t</Creative>\n\t\t<Creative
+        AdID=\"602833-Companion\">\n\t\t\t<CompanionAds>\n\t\t\t\t<Companion width=\"300\"
+        height=\"250\">\n\t\t\t\t\t<StaticResource creativeType=\"image/jpeg\">http://demo.tremormedia.com/proddev/vast/300x250_banner1.jpg</StaticResource>\n\t\t\t\t\t<TrackingEvents>\n\t\t\t\t\t\t<Tracking
+        event=\"creativeView\">http://myTrackingURL/wrapper/firstCompanionCreativeView</Tracking>\n\t\t\t\t\t</TrackingEvents>\n\t\t\t\t\t<CompanionClickThrough>http://www.tremormedia.com</CompanionClickThrough>\n\t\t\t\t</Companion>\n\t\t\t\t<Companion
+        width=\"728\" height=\"90\">\n\t\t\t\t\t<StaticResource creativeType=\"image/jpeg\">http://demo.tremormedia.com/proddev/vast/728x90_banner1.jpg</StaticResource>\n\t\t\t\t\t<CompanionClickThrough>http://www.tremormedia.com</CompanionClickThrough>\n\t\t\t\t</Companion>\n\t\t\t</CompanionAds>\n\t\t</Creative>\n\t</Creatives>\n
+        \ </Wrapper>\n  </Ad>\n</VAST>\n"
+    http_version: 
+  recorded_at: Thu, 15 Sep 2016 15:18:04 GMT

@@ -9,14 +9,14 @@ class ParserTest < Minitest::Test
     refute_nil ::VpaidParser::VERSION
   end
 
-  def test_parser_raises_argument_error_when_not_given_uri
-    error = assert_raises ArgumentError do
+  def test_parser_raises_error_when_not_given_url
+    error = assert_raises VpaidParser::ErrorOpeningUrl do
       VCR.use_cassette('not_uri') do
         uri = URI.parse('cherrycoke')
         VpaidParser::Parser.new(uri)
       end
     end
-    assert_match 'Invalid url', error.message
+    assert_match 'Error opening url', error.message
   end
 
   def test_parser_raises_not_vast_error_when_uri_given_is_not_vast
@@ -113,5 +113,15 @@ class ParserTest < Minitest::Test
       end
     end
     assert_match 'Error: Wrapper depth exceeds five redirects', error.message
+  end
+
+  def test_error_raised_when_bad_wrapper_url
+    error = assert_raises VpaidParser::WrapperRedirectError do
+      VCR.use_cassette('bad_wrapper_url', :allow_playback_repeats => true) do
+        uri = URI.parse('http://demo.tremorvideo.com/proddev/vast/vast_wrapper_linear_2.xml')
+        VpaidParser::Parser.new(uri)
+      end
+    end
+    assert_match 'Error with opening the wrapper url', error.message
   end
 end
