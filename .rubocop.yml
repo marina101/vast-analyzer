@@ -12,3 +12,6 @@ Documentation:
 
 Style/RaiseArgs:
   EnforcedStyle: compact
+
+ClassLength:
+  Max: 150
