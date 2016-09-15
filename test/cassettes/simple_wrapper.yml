@@ -1,0 +1,117 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://demo.tremorvideo.com/proddev/vast/vast_wrapper_linear_1.xml
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 15 Sep 2016 15:04:43 GMT
+      Server:
+      - Apache
+      Last-Modified:
+      - Fri, 26 Feb 2010 20:54:32 GMT
+      Etag:
+      - '"26c52d-6af-1b315200"'
+      Accept-Ranges:
+      - bytes
+      Content-Length:
+      - '1711'
+      Connection:
+      - close
+      Content-Type:
+      - text/xml
+    body:
+      encoding: UTF-8
+      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<VAST version=\"2.0\">\n
+        \ <Ad id=\"602833\">\n  <Wrapper>\n    <AdSystem>Acudeo Compatible</AdSystem>\n
+        \   <VASTAdTagURI>http://demo.tremormedia.com/proddev/vast/vast_inline_linear.xml</VASTAdTagURI>\n
+        \   <Error>http://myErrorURL/wrapper/error</Error>\n    <Impression>http://myTrackingURL/wrapper/impression</Impression>\n\t<Creatives>\n\t\t<Creative
+        AdID=\"602833\">\n\t\t\t<Linear>\n\t\t\t\t<TrackingEvents>\n\t\t\t\t\t<Tracking
+        event=\"creativeView\">http://myTrackingURL/wrapper/creativeView</Tracking>\n\t\t\t\t\t<Tracking
+        event=\"start\">http://myTrackingURL/wrapper/start</Tracking>\n\t\t\t\t\t<Tracking
+        event=\"midpoint\">http://myTrackingURL/wrapper/midpoint</Tracking>\n\t\t\t\t\t<Tracking
+        event=\"firstQuartile\">http://myTrackingURL/wrapper/firstQuartile</Tracking>\n\t\t\t\t\t<Tracking
+        event=\"thirdQuartile\">http://myTrackingURL/wrapper/thirdQuartile</Tracking>\n\t\t\t\t\t<Tracking
+        event=\"complete\">http://myTrackingURL/wrapper/complete</Tracking>\n\t\t\t\t\t<Tracking
+        event=\"mute\">http://myTrackingURL/wrapper/mute</Tracking>\n\t\t\t\t\t<Tracking
+        event=\"unmute\">http://myTrackingURL/wrapper/unmute</Tracking>\n\t\t\t\t\t<Tracking
+        event=\"pause\">http://myTrackingURL/wrapper/pause</Tracking>\n\t\t\t\t\t<Tracking
+        event=\"resume\">http://myTrackingURL/wrapper/resume</Tracking>\n\t\t\t\t\t<Tracking
+        event=\"fullscreen\">http://myTrackingURL/wrapper/fullscreen</Tracking>\t\n\t\t\t\t</TrackingEvents>\n\t\t\t</Linear>\n\t\t</Creative>\n\t\t<Creative>\n\t\t\t<Linear>\n\t\t\t\t<VideoClicks>\n\t\t\t\t\t<ClickTracking>http://myTrackingURL/wrapper/click</ClickTracking>\n\t\t\t\t</VideoClicks>\n\t\t\t</Linear>\n\t\t</Creative>\n\t\t<Creative
+        AdID=\"602833-NonLinearTracking\">\n\t\t\t<NonLinearAds>\n\t\t\t\t<TrackingEvents>\n\t\t\t\t</TrackingEvents>\n\t\t\t</NonLinearAds>\n\t\t</Creative>\n\t</Creatives>\n
+        \ </Wrapper>\n  </Ad>\n</VAST>\n"
+    http_version: 
+  recorded_at: Thu, 15 Sep 2016 15:04:44 GMT
+- request:
+    method: get
+    uri: http://demo.tremormedia.com/proddev/vast/vast_inline_linear.xml
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 15 Sep 2016 15:04:43 GMT
+      Server:
+      - Apache
+      Last-Modified:
+      - Fri, 26 Feb 2010 20:54:31 GMT
+      Etag:
+      - '"26c52b-86f-1b220fc0"'
+      Accept-Ranges:
+      - bytes
+      Content-Length:
+      - '2159'
+      Connection:
+      - close
+      Content-Type:
+      - text/xml
+    body:
+      encoding: UTF-8
+      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<VAST version=\"2.0\">\n
+        \ <Ad id=\"601364\">\n  <InLine>\n    <AdSystem>Acudeo Compatible</AdSystem>\n
+        \   <AdTitle>VAST 2.0 Instream Test 1</AdTitle>\n    <Description>VAST 2.0
+        Instream Test 1</Description>\n    <Error>http://myErrorURL/error</Error>\n
+        \   <Impression>http://myTrackingURL/impression</Impression>\n\t<Creatives>\n\t\t<Creative
+        AdID=\"601364\">\n\t\t\t<Linear>\n\t\t\t\t<Duration>00:00:30</Duration>\n\t\t\t\t<TrackingEvents>\n\t\t\t\t\t<Tracking
+        event=\"creativeView\">http://myTrackingURL/creativeView</Tracking>\n\t\t\t\t\t<Tracking
+        event=\"start\">http://myTrackingURL/start</Tracking>\n\t\t\t\t\t<Tracking
+        event=\"midpoint\">http://myTrackingURL/midpoint</Tracking>\n\t\t\t\t\t<Tracking
+        event=\"firstQuartile\">http://myTrackingURL/firstQuartile</Tracking>\n\t\t\t\t\t<Tracking
+        event=\"thirdQuartile\">http://myTrackingURL/thirdQuartile</Tracking>\n\t\t\t\t\t<Tracking
+        event=\"complete\">http://myTrackingURL/complete</Tracking>\n\t\t\t\t</TrackingEvents>\n\t\t\t\t<VideoClicks>\n\t\t\t\t\t<ClickThrough>http://www.tremormedia.com</ClickThrough>\n\t\t\t\t\t<ClickTracking>http://myTrackingURL/click</ClickTracking>\n\t\t\t\t</VideoClicks>\n\t\t\t\t<MediaFiles>\n\t\t\t\t\t<MediaFile
+        delivery=\"progressive\" type=\"video/x-flv\" bitrate=\"500\" width=\"400\"
+        height=\"300\" scalable=\"true\" maintainAspectRatio=\"true\">http://cdnp.tremormedia.com/video/acudeo/Carrot_400x300_500kb.flv</MediaFile>\n\t\t\t\t</MediaFiles>\n\t\t\t</Linear>\n\t\t</Creative>\n\t\t<Creative
+        AdID=\"601364-Companion\">\n\t\t\t<CompanionAds>\n\t\t\t\t<Companion width=\"300\"
+        height=\"250\">\n\t\t\t\t\t<StaticResource creativeType=\"image/jpeg\">http://demo.tremormedia.com/proddev/vast/Blistex1.jpg</StaticResource>\n\t\t\t\t\t<TrackingEvents>\n\t\t\t\t\t\t<Tracking
+        event=\"creativeView\">http://myTrackingURL/firstCompanionCreativeView</Tracking>\n\t\t\t\t\t</TrackingEvents>\n
+        \n\t\t\t\t\t<CompanionClickThrough>http://www.tremormedia.com</CompanionClickThrough>\n\t\t\t\t</Companion>\n\t\t\t\t<Companion
+        width=\"728\" height=\"90\">\n\t\t\t\t\t<StaticResource creativeType=\"image/jpeg\">http://demo.tremormedia.com/proddev/vast/728x90_banner1.jpg</StaticResource>\n\t\t\t\t\t<CompanionClickThrough>http://www.tremormedia.com</CompanionClickThrough>\n\t\t\t\t</Companion>\n\t\t\t</CompanionAds>\n\t\t</Creative>\n\t</Creatives>\n
+        \ </InLine>\n  </Ad>\n</VAST>\n"
+    http_version: 
+  recorded_at: Thu, 15 Sep 2016 15:04:44 GMT
+recorded_with: VCR 3.0.3

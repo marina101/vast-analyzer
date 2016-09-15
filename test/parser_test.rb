@@ -2,6 +2,7 @@
 require 'test_helper'
 require 'vcr'
 require 'vpaid_parser'
+require 'byebug'
 
 class ParserTest < Minitest::Test
 
@@ -93,5 +94,21 @@ class ParserTest < Minitest::Test
     end
   end
 
+  def test_wrapper_successfully_unwrapped_and_redirected_to_ad
+    VCR.use_cassette('simple_wrapper') do
+      uri = URI.parse("http://demo.tremorvideo.com/proddev/vast/vast_wrapper_linear_1.xml")
+      parser = VpaidParser::Parser.new(uri)
+      assert !parser.vast.xpath('//mediafile').empty?
+    end
+  end
 
+  def test_wrapper_depth_error_thrown_after_five_unwrapping_redirects
+    error = assert_raises WrapperDepthError do
+      VCR.use_cassette('infinite_wrapper', :allow_playback_repeats => true) do
+        uri = URI.parse("http://demo.tremorvideo.com/proddev/vast/vast_wrapper_linear_2.xml")
+        parser = VpaidParser::Parser.new(uri)
+      end
+    end
+    assert_match 'Error: Wrapper depth exceeds five redirects', error.message
+  end
 end

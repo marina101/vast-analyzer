@@ -5,3 +5,4 @@ source 'https://rubygems.org'
 gemspec
 
 gem 'adgear-cops', :require => false, :git => 'git@github.com:adgear/cops.git'
+gem 'byebug'
