@@ -20,7 +20,7 @@ class ParserTest < Minitest::Test
   end
 
   def test_parser_raises_not_vast_error_when_uri_given_is_not_vast
-    error = assert_raises NotVastError do
+    error = assert_raises VpaidParser::NotVastError do
       VCR.use_cassette('google') do
         uri = URI.parse('https://www.google.com')
         VpaidParser::Parser.new(uri)
@@ -106,7 +106,7 @@ class ParserTest < Minitest::Test
   end
 
   def test_wrapper_depth_error_thrown_after_five_unwrapping_redirects
-    error = assert_raises WrapperDepthError do
+    error = assert_raises VpaidParser::WrapperDepthError do
       VCR.use_cassette('infinite_wrapper', :allow_playback_repeats => true) do
         uri = URI.parse('http://demo.tremorvideo.com/proddev/vast/vast_wrapper_linear_2.xml')
         VpaidParser::Parser.new(uri)

@@ -2,8 +2,7 @@
 require 'vpaid_parser/version'
 require 'nokogiri'
 require 'open-uri'
-require 'vpaid_parser/not_vast_error'
-require 'vpaid_parser/wrapper_depth_error'
+require 'vpaid_parser/errors'
 
 module VpaidParser
   class Parser
