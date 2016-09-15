@@ -1,0 +1,1 @@
+class NotVastError < StandardError; end

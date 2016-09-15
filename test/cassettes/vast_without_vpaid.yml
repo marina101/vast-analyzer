@@ -1,0 +1,113 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://d.adgear.com/impressions/ext_nc/p=223348.xml
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 14 Sep 2016 20:51:26 GMT
+      Content-Type:
+      - application/xml
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Server:
+      - Apache
+      X-Realserver-Ap:
+      - h019
+      P3p:
+      - CP="NOI OTC OTP OUR NOR"
+      Cache-Control:
+      - no-cache, no-store, must-revalidate, proxy-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - Thu, 23 Sep 2004 17:42:04 GMT
+      Last-Modified:
+      - Wed, 14 Sep 2016 20:51:26 GMT
+      X-Thinktime:
+      - '0'
+      Set-Cookie:
+      - AdGear_Session=0000____; path=/
+      - AdGear_UID=0135aeaa-7abd-11e6-bdb8-782bcb66f86f; expires=Friday, 14-Sep-2018
+        16:51:26 GMT; path=/; domain=.adgear.com
+      X-Realserver-Nx:
+      - h019
+      Access-Control-Allow-Origin:
+      - "*"
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+        <VAST version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="vast.xsd">
+            <Ad id="0135af5e-7abd-11e6-9162-782bcb66f86f">
+                <InLine>
+                    <AdSystem>AdGear</AdSystem>
+                    <AdTitle>VAST In-Stream Video</AdTitle>
+                    <Description></Description>
+                    <Impression id="AdGear"><![CDATA[https://d.adgear.com/impressions/ext_witness/b=VFhOPTAxMzVhZjVlLTdhYmQtMTFlNi05MTYyLTc4MmJjYjY2Zjg2Zg**/p=223348/a=137187?AG_R=615072987]]></Impression>
+                    <Impression id="ThirdParty"><![CDATA[]]></Impression>
+                    <Impression id="AdGearDataProfile"><![CDATA[https://tracker.samplicio.us/tracker/4f773798-add6-45d0-bb89-f599f9f9ea33/pixel.gif?sid=SamsungIn-app_Retargeted&pid=223348&crid=137187&idfa=]]></Impression>
+                    <Creatives>
+                        <Creative sequence="1" AdID="137187">
+                            <Linear>
+                                <Duration><![CDATA[00:00:15]]></Duration>
+                                <TrackingEvents>
+                                    <Tracking event="start"><![CDATA[https://d.adgear.com/interactions/ext/b=VFhOPTAxMzVhZjVlLTdhYmQtMTFlNi05MTYyLTc4MmJjYjY2Zjg2Zg**/p=223348/a=137187/i=197849?AG_R=252841131]]></Tracking>
+                                    <Tracking event="start" id="ThirdParty_start"><![CDATA[]]></Tracking>
+                                    <Tracking event="midpoint"><![CDATA[https://d.adgear.com/interactions/ext/b=VFhOPTAxMzVhZjVlLTdhYmQtMTFlNi05MTYyLTc4MmJjYjY2Zjg2Zg**/p=223348/a=137187/i=197850?AG_R=1414712489]]></Tracking>
+                                    <Tracking event="midpoint" id="ThirdParty_midpoint"><![CDATA[]]></Tracking>
+                                    <Tracking event="firstQuartile"><![CDATA[https://d.adgear.com/interactions/ext/b=VFhOPTAxMzVhZjVlLTdhYmQtMTFlNi05MTYyLTc4MmJjYjY2Zjg2Zg**/p=223348/a=137187/i=197851?AG_R=231185647]]></Tracking>
+                                    <Tracking event="firstQuartile" id="ThirdParty_firstQuartile"><![CDATA[]]></Tracking>
+                                    <Tracking event="thirdQuartile"><![CDATA[https://d.adgear.com/interactions/ext/b=VFhOPTAxMzVhZjVlLTdhYmQtMTFlNi05MTYyLTc4MmJjYjY2Zjg2Zg**/p=223348/a=137187/i=197852?AG_R=1178724255]]></Tracking>
+                                    <Tracking event="thirdQuartile" id="ThirdParty_thirdQuartile"><![CDATA[]]></Tracking>
+                                    <Tracking event="complete"><![CDATA[https://d.adgear.com/interactions/ext/b=VFhOPTAxMzVhZjVlLTdhYmQtMTFlNi05MTYyLTc4MmJjYjY2Zjg2Zg**/p=223348/a=137187/i=197853?AG_R=656216535]]></Tracking>
+                                    <Tracking event="complete" id="ThirdParty_complete"><![CDATA[]]></Tracking>
+                                    <Tracking event="mute"><![CDATA[https://d.adgear.com/interactions/ext/b=VFhOPTAxMzVhZjVlLTdhYmQtMTFlNi05MTYyLTc4MmJjYjY2Zjg2Zg**/p=223348/a=137187/i=197854?AG_R=787122906]]></Tracking>
+                                    <Tracking event="mute" id="ThirdParty_mute"><![CDATA[]]></Tracking>
+                                    <Tracking event="unmute"><![CDATA[https://d.adgear.com/interactions/ext/b=VFhOPTAxMzVhZjVlLTdhYmQtMTFlNi05MTYyLTc4MmJjYjY2Zjg2Zg**/p=223348/a=137187/i=197855?AG_R=1631334815]]></Tracking>
+                                    <Tracking event="unmute" id="ThirdParty_unmute"><![CDATA[]]></Tracking>
+                                    <Tracking event="pause"><![CDATA[https://d.adgear.com/interactions/ext/b=VFhOPTAxMzVhZjVlLTdhYmQtMTFlNi05MTYyLTc4MmJjYjY2Zjg2Zg**/p=223348/a=137187/i=197856?AG_R=1881415685]]></Tracking>
+                                    <Tracking event="pause" id="ThirdParty_pause"><![CDATA[]]></Tracking>
+                                    <Tracking event="rewind"><![CDATA[https://d.adgear.com/interactions/ext/b=VFhOPTAxMzVhZjVlLTdhYmQtMTFlNi05MTYyLTc4MmJjYjY2Zjg2Zg**/p=223348/a=137187/i=197857?AG_R=1324259725]]></Tracking>
+                                    <Tracking event="rewind" id="ThirdParty_rewind"><![CDATA[]]></Tracking>
+                                    <Tracking event="skip"><![CDATA[https://d.adgear.com/interactions/ext/b=VFhOPTAxMzVhZjVlLTdhYmQtMTFlNi05MTYyLTc4MmJjYjY2Zjg2Zg**/p=223348/a=137187/i=197858?AG_R=2071180840]]></Tracking>
+                                    <Tracking event="skip" id="ThirdParty_skip"><![CDATA[]]></Tracking>
+                                    <Tracking event="fullscreen"><![CDATA[https://d.adgear.com/interactions/ext/b=VFhOPTAxMzVhZjVlLTdhYmQtMTFlNi05MTYyLTc4MmJjYjY2Zjg2Zg**/p=223348/a=137187/i=197859?AG_R=914063287]]></Tracking>
+                                    <Tracking event="fullscreen" id="ThirdParty_fullscreen"><![CDATA[]]></Tracking>
+                                </TrackingEvents>
+                                <AdParameters></AdParameters>
+                                <VideoClicks>
+                                    <ClickThrough><![CDATA[https://d.adgear.com/clicks/ext/b=VFhOPTAxMzVhZjVlLTdhYmQtMTFlNi05MTYyLTc4MmJjYjY2Zjg2Zg**/p=223348/a=137187/c=120006]]></ClickThrough>
+                                    <ClickTracking id="AdGear"><![CDATA[https://d.adgear.com/clicks/ext/b=VFhOPTAxMzVhZjVlLTdhYmQtMTFlNi05MTYyLTc4MmJjYjY2Zjg2Zg**/p=223348/a=137187/c=120007]]></ClickTracking>
+                                </VideoClicks>
+                                <MediaFiles>
+                                    <MediaFile id="1" delivery="progressive" type="video/mp4" bitrate="300" width="300" height="225"><![CDATA[https://a.adgear.com/assets/18455/137187/20160824174653_0.700469601651562_20160525142439_0.859999877054723_Adgear_3d_Logo.mp4]]></MediaFile>
+                                    <MediaFile id="1" delivery="progressive" type="video/webm" bitrate="300" width="300" height="225"><![CDATA[https://a.adgear.com/assets/18455/137187/20160824174653_0.702509701603248_20160525142439_0.859999877054723_Adgear_3d_Logo.webm]]></MediaFile>
+                                </MediaFiles>
+                            </Linear>
+                         </Creative>
+                     </Creatives>
+                </InLine>
+            </Ad>
+        </VAST>
+    http_version: 
+  recorded_at: Wed, 14 Sep 2016 20:51:26 GMT
+recorded_with: VCR 3.0.3

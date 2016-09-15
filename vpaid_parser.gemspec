@@ -36,4 +36,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'minitest', '~> 5.0'
   spec.add_development_dependency 'nokogiri'
   spec.add_development_dependency 'rubocop', '0.39.0'
+  spec.add_development_dependency 'vcr'
+  spec.add_development_dependency 'webmock'
+  spec.add_development_dependency 'minitest-vcr'
 end

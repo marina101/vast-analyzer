@@ -2,19 +2,26 @@
 require 'vpaid_parser/version'
 require 'nokogiri'
 require 'open-uri'
+require 'vpaid_parser/not_vast_error'
+require 'vpaid_parser/wrapper_depth_error'
+
 
 module VpaidParser
   class Parser
     def initialize(url)
-      @vast = Nokogiri::HTML(open(url))
-      unwrap unless @vast.xpath('//vastadtaguri').empty?
-      @mediafiles = @vast.xpath('//mediafile')
-    rescue
-      raise ArgumentError, 'Invalid url'
+      begin
+        @vast = Nokogiri::HTML(open(url))
+        unwrap unless @vast.xpath('//vastadtaguri').empty?
+        @mediafiles = @vast.xpath('//mediafile')
+      rescue
+        raise ArgumentError, 'Invalid url'
+      end
+      raise NotVastError.new("Error: not vast") if @vast.xpath('//vast').empty?
     end
 
     def categorize
       # note: need to throw exception if its not a vast at all
+      #raise  @vast.xpath('//vast')
       if include_flash_vpaid? && include_js?
         'flash_js_vpaid'
       elsif include_flash_vpaid?
@@ -38,7 +45,7 @@ module VpaidParser
       rescue
         raise ArgumentError, 'Invalid wrapper redirect url'
       end
-      raise WrapperDepthError, 'Wrapper depth exceeds five redirects'
+      raise WrapperDepthError.new, 'Wrapper depth exceeds five redirects'
     end
 
     def include_flash_vpaid?
