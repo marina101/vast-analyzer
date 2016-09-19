@@ -1,9 +1,3 @@
-# VpaidParser
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/vpaid_parser`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
-
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -22,11 +16,25 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Simply pass your xml vast url to the parser object to instantiate a parser linked to that vast:
+
+```ruby
+parser = Parser.new('https://www.vastexample.xml')
+```
+
+To categorize whether your vast contiains vpaid, flash, and/or js, simply call `categorize` on it:
+
+```ruby
+parser.categorize
+```
+
+It will return one of four possible options: 'flash_js_vpaid', 'flash_vpaid', 'js_vpaid', 'neither'
+
+Initializing a parser or calling categorize may also return an error subtype of the Error class if there is a problem with the url or the wrapper redirect url, if its not a vast link, or if the wrapper redirects more than five times.
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+After checking out the repo, run `bin/setup` to install dependencies. You must also run `git submodule init` and `git submodule update` to initialize the submodules, that work with rubocop. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment. 
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 

@@ -1,0 +1,56 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://fw.adsafeprotected.com/vast/fwjsvid/st/58622/9328507/skeleton.js?PluID=0&c=23&cim=1&ord=%25time%25&originalVast=https://bs.serving-sys.com/BurstingPipe/adServer.bs?cn=is&pl=VAST&pli=18103306&pos=598
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx/1.4.7
+      Date:
+      - Wed, 14 Sep 2016 20:23:06 GMT
+      Content-Type:
+      - text/xml;charset=ISO-8859-1
+      Content-Length:
+      - '1925'
+      Connection:
+      - keep-alive
+      Pragma:
+      - no-cache
+      Cache-Control:
+      - no-cache
+      Expires:
+      - Wed, 31 Dec 1969 23:59:59 GMT
+      X-Server-Name:
+      - app19.303net.pvt
+    body:
+      encoding: UTF-8
+      string: "<VAST version=\"2.0\">\n\t<Ad id=\"IntegralAds\">\n\t\t<InLine>\n\t\t\t<AdSystem>IntegralAds</AdSystem>\n\t\t\t<AdTitle>IntegralAds
+        VAST 2.0 Ad Wrapper</AdTitle>\n\t\t\t<Description/>\n\t\t\t\t\t\t<Impression
+        id=\"Integral Ad Science\">\n\t\t\t\t<![CDATA[https://static.adsafeprotected.com/skeleton.gif]]>\n\t\t\t\t\t</Impression>\n\t\t\t<Creatives>\n\t\t\t\t<Creative
+        id=\"xxxxxx\" >\n\t\t\t\t\t<Linear>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<Duration>00:00:15</Duration>\n\t\t\t\t\t\t\t\t\t\t\t\t<VideoClicks>\n\t\t\t\t\t\t\t<ClickThrough/>\n\t\t\t\t\t\t</VideoClicks>\n\t\t\t\t\t\t<MediaFiles>\n\t\t\t\t\t\t\t
+        \                               <MediaFile delivery=\"progressive\" width=\"300\"
+        height=\"250\" type=\"application/x-shockwave-flash\" apiFramework=\"VPAID\">\n
+        \                                   <![CDATA[https://static.adsafeprotected.com/IASVideo.swf?IAS_PATH=/fwjsvid-blk/st/58622/9328507/skeleton.js&originalVast=https://bs.serving-sys.com/BurstingPipe/adServer.bs?cn=is&c=23&pl=VAST&pli=18103306&PluID=0&pos=598&ord=%time%&cim=1]]>\n
+        \                               </MediaFile>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<MediaFile
+        delivery=\"progressive\" width=\"300\" height=\"250\" type=\"application/x-javascript\"
+        apiFramework=\"VPAID\">\n\t\t\t\t\t\t\t\t\t<![CDATA[https://fw.adsafeprotected.com/IASVideo.js?IAS_PATH=/fwjsvid-blk/st/58622/9328507/skeleton.js&originalVast=https://bs.serving-sys.com/BurstingPipe/adServer.bs?cn=is&c=23&pl=VAST&pli=18103306&PluID=0&pos=598&ord=%time%&cim=1]]>\n\t\t\t\t\t\t\t\t</MediaFile>\n
+        \                               <MediaFile delivery=\"progressive\" width=\"300\"
+        height=\"250\" type=\"application/javascript\" apiFramework=\"VPAID\">\n                                    <![CDATA[https://fw.adsafeprotected.com/IASVideo.js?IAS_PATH=/fwjsvid-blk/st/58622/9328507/skeleton.js&originalVast=https://bs.serving-sys.com/BurstingPipe/adServer.bs?cn=is&c=23&pl=VAST&pli=18103306&PluID=0&pos=598&ord=%time%&cim=1]]>\n
+        \                               </MediaFile>\n\t\t\t\t\t\t\t\t\t\t\t\t\t</MediaFiles>\n\t\t\t\t\t</Linear>\n\t\t\t\t</Creative>\n\t\t\t\t\n\t\t\t</Creatives>\n\t\t</InLine>\n\t</Ad>\n</VAST>\n"
+    http_version: 
+  recorded_at: Wed, 14 Sep 2016 20:23:06 GMT
+recorded_with: VCR 3.0.3

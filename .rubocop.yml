@@ -6,3 +6,12 @@ Rails:
 
 AllCops:
   TargetRubyVersion: 2.3
+
+Documentation:
+    Enabled: false
+
+Style/RaiseArgs:
+  EnforcedStyle: compact
+
+ClassLength:
+  Max: 150
