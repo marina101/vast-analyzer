@@ -3,7 +3,7 @@
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'vast-analyzer'
+gem 'vast_analyzer'
 ```
 
 And then execute:
@@ -12,7 +12,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install vast-analyzer
+    $ gem install vast_analyzer
 
 ## Usage
 
