@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-module VpaidParser
+module VastAnalyzer
   class Error < StandardError; end
   class ErrorOpeningUrl < Error; end
   class WrapperRedirectError < Error; end
