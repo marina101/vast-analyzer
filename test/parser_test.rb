@@ -3,6 +3,7 @@ require 'test_helper'
 require 'vcr'
 require 'vast_analyzer'
 require 'byebug'
+require 'webmock/minitest'
 
 class ParserTest < Minitest::Test
   def test_that_it_has_a_version_number
@@ -27,6 +28,14 @@ class ParserTest < Minitest::Test
       end
     end
     assert_match 'Error: not vast', error.message
+  end
+
+  def test_custom_max_depth_and_timeout_values_dont_raise_error_on_correct_input
+    VCR.use_cassette('custom_initialize') do
+      uri = URI.parse('https://vast.brandads.net/vast?line_item=13796381&subid1=vpaidjsonly')
+      parser = VastAnalyzer::Parser.new(uri, 3, 0.5)
+      assert_equal 'js_vpaid', parser.categorize
+    end
   end
 
   def test_categorize_identifies_js_and_flash_vpaid
@@ -123,5 +132,14 @@ class ParserTest < Minitest::Test
       end
     end
     assert_match 'Error with opening the wrapper url', error.message
+  end
+
+  def test_exception_raised_when_timeout_exceeded
+    stub_request(:get, 'https://vast.brandads.net/vast?line_item=13796381&subid1=vpaidjsonly').to_timeout
+
+    error = assert_raises VastAnalyzer::UrlTimeoutError do
+      uri = URI.parse('https://vast.brandads.net/vast?line_item=13796381&subid1=vpaidjsonly')
+      VastAnalyzer::Parser.new(uri)
+    end
   end
 end

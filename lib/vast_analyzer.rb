@@ -3,18 +3,16 @@ require 'vast_analyzer/version'
 require 'nokogiri'
 require 'open-uri'
 require 'vast_analyzer/errors'
+require 'uri'
 
 module VastAnalyzer
   class Parser
     attr_accessor :vast
 
-    def initialize(url, max_redirects = 5)
-      begin
-        @vast = Nokogiri::HTML(open(url))
-      rescue
-        raise ErrorOpeningUrl.new('Error opening url')
-      end
+    def initialize(url, max_redirects = 5, timeout = 5)
+      @timeout = timeout
       @max_depth = max_redirects
+      open_xml(url)
       unwrap unless @vast.xpath('//vastadtaguri').empty?
       @mediafiles = @vast.xpath('//mediafile')
       raise NotVastError.new('Error: not vast') if @vast.xpath('//vast').empty?
@@ -34,12 +32,24 @@ module VastAnalyzer
 
     private
 
+    def open_xml(url)
+      begin
+        @vast = Nokogiri::HTML(open(url, :open_timeout => @timeout))
+      rescue Timeout::Error => e
+        raise UrlTimeoutError.new("Timeout error, #{e.message}")
+      rescue OpenURI::HTTPError => e
+        raise ErrorWithHttp.new("ErrorOpeningUrl, status: #{e.message}")
+      rescue StandardError => e
+        raise ErrorOpeningUrl.new("Error opening url, #{e.message}")
+      end
+    end
+
     def unwrap
       @max_depth.times do
         return if @vast.xpath('//vastadtaguri').empty?
         begin
           url = @vast.xpath('//vastadtaguri')[0].content
-          @vast = Nokogiri::HTML(open(url))
+          open_xml(url)
         rescue
           raise WrapperRedirectError.new('Error with opening the wrapper url')
         end

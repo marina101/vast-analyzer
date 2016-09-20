@@ -5,4 +5,6 @@ module VastAnalyzer
   class WrapperRedirectError < Error; end
   class NotVastError < Error; end
   class WrapperDepthError < Error; end
+  class UrlTimeoutError < Error; end
+  class ErrorWithHttp < Error; end
 end
