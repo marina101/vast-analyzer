@@ -3,7 +3,7 @@
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'vpaid_parser'
+gem 'vast_analyzer'
 ```
 
 And then execute:
@@ -12,14 +12,14 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install vpaid_parser
+    $ gem install vast_analyzer
 
 ## Usage
 
 Simply pass your xml vast url to the parser object to instantiate a parser linked to that vast:
 
 ```ruby
-parser = Parser.new('https://www.vastexample.xml')
+parser = VastAnalyzer::Parser.new('https://www.vastexample.xml')
 ```
 
 To categorize whether your vast contiains vpaid, flash, and/or js, simply call `categorize` on it:
@@ -40,7 +40,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/adgear/vpaid_parser.
+Bug reports and pull requests are welcome on GitHub at https://github.com/adgear/vast-analyzer.
 
 
 ## License

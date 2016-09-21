@@ -1,10 +1,10 @@
 # frozen_string_literal: true
-require 'vpaid_parser/version'
+require 'vast_analyzer/version'
 require 'nokogiri'
 require 'open-uri'
-require 'vpaid_parser/errors'
+require 'vast_analyzer/errors'
 
-module VpaidParser
+module VastAnalyzer
   class Parser
     attr_accessor :vast
 

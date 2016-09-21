@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
-require 'vpaid_parser'
+require 'vast_analyzer'
 require 'minitest/autorun'
 require 'vcr'
 require 'minitest-vcr'

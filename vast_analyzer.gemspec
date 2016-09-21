@@ -2,15 +2,15 @@
 # frozen_string_literal: true
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'vpaid_parser/version'
+require 'vast_analyzer/version'
 
 Gem::Specification.new do |spec|
-  spec.name = 'vpaid_parser'
-  spec.version = VpaidParser::VERSION
+  spec.name = 'vast_analyzer'
+  spec.version = VastAnalyzer::VERSION
   spec.authors = ['Marina Chirchikova']
   spec.email = ['marina.chirchikova@adgear.com']
 
-  spec.summary = 'A VPAID parser that autodetects VPAID, flash, and js in VAST media files'
+  spec.summary = 'A VAST analyzer that autodetects VPAID, flash, and js in VAST media files'
   spec.homepage = "TODO: Put your gem's website or public repo URL here."
   spec.license = 'MIT'
 
