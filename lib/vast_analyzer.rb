@@ -3,7 +3,6 @@ require 'vast_analyzer/version'
 require 'nokogiri'
 require 'open-uri'
 require 'vast_analyzer/errors'
-require 'uri'
 
 module VastAnalyzer
   class Parser
