@@ -11,6 +11,7 @@ module VastAnalyzer
     def initialize(url, max_redirects = 5, timeout = 5)
       @timeout = timeout
       @max_depth = max_redirects
+      @attributes = {}
       open_xml(url)
       unwrap unless @vast.xpath('//vastadtaguri').empty?
       @mediafiles = @vast.xpath('//mediafile')
@@ -19,13 +20,13 @@ module VastAnalyzer
 
     def categorize
       if include_flash_vpaid? && include_js?
-        'flash_js_vpaid'
+        @attributes.merge!(:vpaid_status => 'flash_js_vpaid') 
       elsif include_flash_vpaid?
-        'flash_vpaid'
+        @attributes.merge!(:vpaid_status => 'flash_vpaid')
       elsif include_js?
-        'js_vpaid'
+        @attributes.merge!(:vpaid_status => 'js_vpaid')
       else
-        'neither'
+        @attributes.merge!(:vpaid_status => 'neither')
       end
     end
 
