@@ -33,7 +33,7 @@ class ParserTest < Minitest::Test
   def test_custom_max_depth_and_timeout_values_dont_raise_error_on_correct_input
     VCR.use_cassette('custom_initialize') do
       uri = URI.parse('https://vast.brandads.net/vast?line_item=13796381&subid1=vpaidjsonly')
-      parser = VastAnalyzer::Parser.new(uri, 3, 0.5)
+      parser = VastAnalyzer::Parser.new(uri, :max_redirects => 3, :timeout => 0.5)
       assert_equal 'js_vpaid', parser.categorize[:vpaid_status]
     end
   end
@@ -137,7 +137,7 @@ class ParserTest < Minitest::Test
   def test_exception_raised_when_timeout_exceeded
     stub_request(:get, 'https://vast.brandads.net/vast?line_item=13796381&subid1=vpaidjsonly').to_timeout
 
-    error = assert_raises VastAnalyzer::UrlTimeoutError do
+    assert_raises VastAnalyzer::UrlTimeoutError do
       uri = URI.parse('https://vast.brandads.net/vast?line_item=13796381&subid1=vpaidjsonly')
       VastAnalyzer::Parser.new(uri)
     end
