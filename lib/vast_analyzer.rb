@@ -54,7 +54,7 @@ module VastAnalyzer
     end
 
     def include_flash_vpaid?
-      @mediafiles.any? do |mediafile|
+      @include_flash ||= @mediafiles.any? do |mediafile|
         is_vpaid_api = mediafile.attr('apiframework') == 'VPAID'
         uses_flash = ['application/x-shockwave-flash', 'video/x-flv']
                      .include?(mediafile.attr('type'))
@@ -63,7 +63,7 @@ module VastAnalyzer
     end
 
     def include_js?
-      @mediafiles.any? do |mediafile|
+      @include_js ||= @mediafiles.any? do |mediafile|
         ['application/x-javascript', 'application/javascript'].include?(mediafile.attr('type'))
       end
     end
