@@ -32,19 +32,22 @@ module VastAnalyzer
     private
 
     def open_xml(url, limit: 10)
-      raise ArgumentError, 'Too many HTTP redirects' if limit == 0
-      response = Net::HTTP.get_response(URI(url))
-      case response
-      when Net::HTTPSuccess
-        @vast = Nokogiri::HTML(response.body)
-      when Net::HTTPRedirection
-        location = response['location']
-        open_xml(location, :limit => limit - 1)
+      begin  
+        raise ArgumentError, 'Too many HTTP redirects' if limit == 0
+        response = Net::HTTP.get_response(URI(url))
+        
+        case response
+        when Net::HTTPSuccess
+          @vast = Nokogiri::HTML(response.body)
+        when Net::HTTPRedirection
+          location = response['location']
+          open_xml(location, :limit => limit - 1)
+        end
+      rescue Timeout::Error
+        raise UrlTimeoutError.new('Timeout error')
+      rescue StandardError => e
+        raise ErrorOpeningUrl.new("Error opening url, #{e.message}")
       end
-    rescue Timeout::Error
-      raise UrlTimeoutError.new('Timeout error')
-    rescue StandardError => e
-      raise ErrorOpeningUrl.new("Error opening url, #{e.message}")
     end
 
     def unwrap(max_redirects)
