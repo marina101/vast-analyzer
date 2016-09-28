@@ -31,15 +31,15 @@ module VastAnalyzer
 
     private
 
-    def open_xml(url, limit: 10)
+    def open_xml(url, limit: 2)
       raise ArgumentError, 'Too many HTTP redirects' if limit == 0
       response = Net::HTTP.get_response(URI(url))
+
       case response
       when Net::HTTPSuccess
         @vast = Nokogiri::HTML(response.body)
       when Net::HTTPRedirection
-        location = response['location']
-        open_xml(location, :limit => limit - 1)
+        open_xml(response['location'], :limit => limit - 1)
       end
     rescue Timeout::Error
       raise UrlTimeoutError.new('Timeout error')
