@@ -25,7 +25,7 @@ parser = VastAnalyzer::Parser.new('https://www.vastexample.xml')
 To categorize whether your vast contiains vpaid, flash, and/or js, simply call `categorize` on it:
 
 ```ruby
-parser.categorize[:vpaid_status]]
+parser.categorize[:vpaid_status]
 ```
 
 It will return one of four possible options: 'flash_js_vpaid', 'flash_vpaid', 'js_vpaid', 'neither'
