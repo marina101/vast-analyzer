@@ -13,6 +13,8 @@ http_interactions:
       - "*/*"
       User-Agent:
       - Ruby
+      Host:
+      - fw.adsafeprotected.com
   response:
     status:
       code: 200
@@ -21,7 +23,7 @@ http_interactions:
       Server:
       - nginx/1.4.7
       Date:
-      - Wed, 14 Sep 2016 20:23:06 GMT
+      - Wed, 28 Sep 2016 15:12:57 GMT
       Content-Type:
       - text/xml;charset=ISO-8859-1
       Content-Length:
@@ -35,7 +37,7 @@ http_interactions:
       Expires:
       - Wed, 31 Dec 1969 23:59:59 GMT
       X-Server-Name:
-      - app19.303net.pvt
+      - app26.303net.pvt
     body:
       encoding: UTF-8
       string: "<VAST version=\"2.0\">\n\t<Ad id=\"IntegralAds\">\n\t\t<InLine>\n\t\t\t<AdSystem>IntegralAds</AdSystem>\n\t\t\t<AdTitle>IntegralAds
@@ -52,5 +54,5 @@ http_interactions:
         height=\"250\" type=\"application/javascript\" apiFramework=\"VPAID\">\n                                    <![CDATA[https://fw.adsafeprotected.com/IASVideo.js?IAS_PATH=/fwjsvid-blk/st/58622/9328507/skeleton.js&originalVast=https://bs.serving-sys.com/BurstingPipe/adServer.bs?cn=is&c=23&pl=VAST&pli=18103306&PluID=0&pos=598&ord=%time%&cim=1]]>\n
         \                               </MediaFile>\n\t\t\t\t\t\t\t\t\t\t\t\t\t</MediaFiles>\n\t\t\t\t\t</Linear>\n\t\t\t\t</Creative>\n\t\t\t\t\n\t\t\t</Creatives>\n\t\t</InLine>\n\t</Ad>\n</VAST>\n"
     http_version: 
-  recorded_at: Wed, 14 Sep 2016 20:23:06 GMT
+  recorded_at: Wed, 28 Sep 2016 15:12:57 GMT
 recorded_with: VCR 3.0.3

@@ -3,6 +3,7 @@ require 'test_helper'
 require 'vcr'
 require 'vast_analyzer'
 require 'byebug'
+require 'webmock/minitest'
 
 class ParserTest < Minitest::Test
   def test_that_it_has_a_version_number
@@ -29,13 +30,21 @@ class ParserTest < Minitest::Test
     assert_match 'Error: not vast', error.message
   end
 
+  def test_custom_max_depth_value_doesnt_raise_error_on_correct_input
+    VCR.use_cassette('custom_initialize') do
+      uri = URI.parse('https://vast.brandads.net/vast?line_item=13796381&subid1=vpaidjsonly')
+      parser = VastAnalyzer::Parser.new(uri, :max_redirects => 3)
+      assert_equal 'js_vpaid', parser.categorize[:vpaid_status]
+    end
+  end
+
   def test_categorize_identifies_js_and_flash_vpaid
     VCR.use_cassette('flash_js_vpaid_xml') do
       uri = URI.parse('https://fw.adsafeprotected.com/vast/fwjsvid/st/58622/'\
         '9328507/skeleton.js?originalVast=https://bs.serving-sys.com/BurstingPipe/'\
         'adServer.bs?cn=is&c=23&pl=VAST&pli=18103306&PluID=0&pos=598&ord=%time%&cim=1')
       parser = VastAnalyzer::Parser.new(uri)
-      assert_equal 'flash_js_vpaid', parser.categorize
+      assert_equal 'flash_js_vpaid', parser.categorize[:vpaid_status]
     end
   end
 
@@ -43,7 +52,7 @@ class ParserTest < Minitest::Test
     VCR.use_cassette('only_js') do
       uri = URI.parse('https://vast.brandads.net/vast?line_item=13796381&subid1=vpaidjsonly')
       parser = VastAnalyzer::Parser.new(uri)
-      refute_equal 'flash_js_vpaid', parser.categorize
+      refute_equal 'flash_js_vpaid', parser.categorize[:vpaid_status]
     end
   end
 
@@ -51,7 +60,7 @@ class ParserTest < Minitest::Test
     VCR.use_cassette('only_js') do
       uri = URI.parse('https://vast.brandads.net/vast?line_item=13796381&subid1=vpaidjsonly')
       parser = VastAnalyzer::Parser.new(uri)
-      assert_equal 'js_vpaid', parser.categorize
+      assert_equal 'js_vpaid', parser.categorize[:vpaid_status]
     end
   end
 
@@ -61,7 +70,7 @@ class ParserTest < Minitest::Test
         'skeleton.js?originalVast=https://bs.serving-sys.com/BurstingPipe/adServer.bs?cn'\
         '=is&c=23&pl=VAST&pli=18103306&PluID=0&pos=598&ord=%time%&cim=1')
       parser = VastAnalyzer::Parser.new(uri)
-      refute_equal 'js_vpaid', parser.categorize
+      refute_equal 'js_vpaid', parser.categorize[:vpaid_status]
     end
   end
 
@@ -69,7 +78,7 @@ class ParserTest < Minitest::Test
     VCR.use_cassette('only_flash_vpaid') do
       uri = URI.parse('https://vast.brandads.net/vast?line_item=13822255&ba_cb=__RANDOM_NUMBER__')
       parser = VastAnalyzer::Parser.new(uri)
-      assert_equal 'flash_vpaid', parser.categorize
+      assert_equal 'flash_vpaid', parser.categorize[:vpaid_status]
     end
   end
 
@@ -77,7 +86,7 @@ class ParserTest < Minitest::Test
     VCR.use_cassette('vast_without_vpaid') do
       uri = URI.parse('https://d.adgear.com/impressions/ext_nc/p=223348.xml')
       parser = VastAnalyzer::Parser.new(uri)
-      refute_equal 'flash_vpaid', parser.categorize
+      refute_equal 'flash_vpaid', parser.categorize[:vpaid_status]
     end
   end
 
@@ -85,7 +94,7 @@ class ParserTest < Minitest::Test
     VCR.use_cassette('vast_without_vpaid') do
       uri = URI.parse('https://d.adgear.com/impressions/ext_nc/p=223348.xml')
       parser = VastAnalyzer::Parser.new(uri)
-      assert_equal 'neither', parser.categorize
+      assert_equal 'neither', parser.categorize[:vpaid_status]
     end
   end
 
@@ -93,7 +102,7 @@ class ParserTest < Minitest::Test
     VCR.use_cassette('only_flash_vpaid') do
       uri = URI.parse('https://vast.brandads.net/vast?line_item=13822255&ba_cb=__RANDOM_NUMBER__')
       parser = VastAnalyzer::Parser.new(uri)
-      refute_equal 'neither', parser.categorize
+      refute_equal 'neither', parser.categorize[:vpaid_status]
     end
   end
 
@@ -123,5 +132,14 @@ class ParserTest < Minitest::Test
       end
     end
     assert_match 'Error with opening the wrapper url', error.message
+  end
+
+  def test_exception_raised_when_timeout_exceeded
+    stub_request(:get, 'https://vast.brandads.net/vast?line_item=13796381&subid1=vpaidjsonly').to_timeout
+
+    assert_raises VastAnalyzer::UrlTimeoutError do
+      uri = URI.parse('https://vast.brandads.net/vast?line_item=13796381&subid1=vpaidjsonly')
+      VastAnalyzer::Parser.new(uri)
+    end
   end
 end

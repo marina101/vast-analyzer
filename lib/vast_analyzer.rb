@@ -1,45 +1,58 @@
 # frozen_string_literal: true
 require 'vast_analyzer/version'
 require 'nokogiri'
-require 'open-uri'
+require 'net/http'
+require 'uri'
 require 'vast_analyzer/errors'
 
 module VastAnalyzer
   class Parser
-    attr_accessor :vast
+    attr_accessor :vast, :attributes
 
-    def initialize(url, max_redirects = 5)
-      begin
-        @vast = Nokogiri::HTML(open(url))
-      rescue
-        raise ErrorOpeningUrl.new('Error opening url')
-      end
-      @max_depth = max_redirects
-      unwrap unless @vast.xpath('//vastadtaguri').empty?
-      @mediafiles = @vast.xpath('//mediafile')
+    def initialize(url, max_redirects: 5)
+      @attributes = {}
+      open_xml(url)
       raise NotVastError.new('Error: not vast') if @vast.xpath('//vast').empty?
+      unwrap(max_redirects) unless @vast.xpath('//vastadtaguri').empty?
+      @mediafiles = @vast.xpath('//mediafile')
     end
 
     def categorize
       if include_flash_vpaid? && include_js?
-        'flash_js_vpaid'
+        @attributes.merge!(:vpaid_status => 'flash_js_vpaid')
       elsif include_flash_vpaid?
-        'flash_vpaid'
+        @attributes.merge!(:vpaid_status => 'flash_vpaid')
       elsif include_js?
-        'js_vpaid'
+        @attributes.merge!(:vpaid_status => 'js_vpaid')
       else
-        'neither'
+        @attributes.merge!(:vpaid_status => 'neither')
       end
     end
 
     private
 
-    def unwrap
-      @max_depth.times do
+    def open_xml(url, limit: 10)
+      raise ArgumentError, 'Too many HTTP redirects' if limit == 0
+      response = Net::HTTP.get_response(URI(url))
+      case response
+      when Net::HTTPSuccess
+        @vast = Nokogiri::HTML(response.body)
+      when Net::HTTPRedirection
+        location = response['location']
+        open_xml(location, :limit => limit - 1)
+      end
+    rescue Timeout::Error
+      raise UrlTimeoutError.new('Timeout error')
+    rescue StandardError => e
+      raise ErrorOpeningUrl.new("Error opening url, #{e.message}")
+    end
+
+    def unwrap(max_redirects)
+      max_redirects.times do
         return if @vast.xpath('//vastadtaguri').empty?
         begin
           url = @vast.xpath('//vastadtaguri')[0].content
-          @vast = Nokogiri::HTML(open(url))
+          open_xml(url)
         rescue
           raise WrapperRedirectError.new('Error with opening the wrapper url')
         end
@@ -48,7 +61,7 @@ module VastAnalyzer
     end
 
     def include_flash_vpaid?
-      @mediafiles.any? do |mediafile|
+      @include_flash ||= @mediafiles.any? do |mediafile|
         is_vpaid_api = mediafile.attr('apiframework') == 'VPAID'
         uses_flash = ['application/x-shockwave-flash', 'video/x-flv']
                      .include?(mediafile.attr('type'))
@@ -57,7 +70,7 @@ module VastAnalyzer
     end
 
     def include_js?
-      @mediafiles.any? do |mediafile|
+      @include_js ||= @mediafiles.any? do |mediafile|
         ['application/x-javascript', 'application/javascript'].include?(mediafile.attr('type'))
       end
     end

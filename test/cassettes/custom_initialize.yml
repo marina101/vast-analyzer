@@ -1,0 +1,58 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://vast.brandads.net/vast?line_item=13796381&subid1=vpaidjsonly
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - no-cache, no-store, must-revalidate
+      Content-Type:
+      - application/xml
+      Date:
+      - Tue, 20 Sep 2016 18:23:06 GMT
+      Expires:
+      - '0'
+      P3p:
+      - CP="NOI ADM DEV PSAi COM NAV OUR OTR STP IND DEM"
+      Pragma:
+      - no-cache
+      X-Powered-By:
+      - Express
+      Content-Length:
+      - '954'
+      Connection:
+      - keep-alive
+    body:
+      encoding: ASCII-8BIT
+      string: <VAST version="2.0"><Ad id="brandads_ad_10000000_13796381_449272_1003689_0"><InLine><AdSystem
+        version="1.0">Brandads AdServer</AdSystem><AdTitle>Power the World of Video</AdTitle><Description>ISCI:POWERTHEWORLDH</Description><Impression><![CDATA[https://beacons.brandads.net/cp-imp?cid=24482&creative_id=1003689&line_item=13796381&er_ts=1474395786&session_id=JvM0U6r4R7oYReGPreTO5n1474395786&er_fp=52eeffc21e85f544&subid1=vpaidjsonly&trust=07699e70-dcc4-449d-aea0-a271c1187186&tsubid3=85395]]></Impression><Creatives><Creative
+        id="brandads_creative_1003689" AdID="brandads_creative_1003689" sequence="1"><Linear><Duration>00:00:15</Duration><TrackingEvents><Tracking
+        event="start"><![CDATA[https://beacons.brandads.net/duration?cid=24482&creative_id=1003689&line_item=13796381&er_ts=1474395786&session_id=JvM0U6r4R7oYReGPreTO5n1474395786&er_fp=52eeffc21e85f544&subid1=vpaidjsonly&percent=0]]></Tracking><Tracking
+        event="firstQuartile"><![CDATA[https://beacons.brandads.net/duration?cid=24482&creative_id=1003689&line_item=13796381&er_ts=1474395786&session_id=JvM0U6r4R7oYReGPreTO5n1474395786&er_fp=52eeffc21e85f544&subid1=vpaidjsonly&percent=.25]]></Tracking><Tracking
+        event="midpoint"><![CDATA[https://beacons.brandads.net/duration?cid=24482&creative_id=1003689&line_item=13796381&er_ts=1474395786&session_id=JvM0U6r4R7oYReGPreTO5n1474395786&er_fp=52eeffc21e85f544&subid1=vpaidjsonly&percent=.5]]></Tracking><Tracking
+        event="thirdQuartile"><![CDATA[https://beacons.brandads.net/duration?cid=24482&creative_id=1003689&line_item=13796381&er_ts=1474395786&session_id=JvM0U6r4R7oYReGPreTO5n1474395786&er_fp=52eeffc21e85f544&subid1=vpaidjsonly&percent=.75]]></Tracking><Tracking
+        event="complete"><![CDATA[https://beacons.brandads.net/duration?cid=24482&creative_id=1003689&line_item=13796381&er_ts=1474395786&session_id=JvM0U6r4R7oYReGPreTO5n1474395786&er_fp=52eeffc21e85f544&subid1=vpaidjsonly&percent=1]]></Tracking></TrackingEvents><AdParameters><![CDATA[{"com":"cid=24482&creative_id=1003689&line_item=13796381&er_ts=1474395786&session_id=JvM0U6r4R7oYReGPreTO5n1474395786&er_fp=52eeffc21e85f544&subid1=vpaidjsonly","clk":"http://www.extremereach.com","vDur":15,"videos":[{"url":"https://d2290ppie00mze.cloudfront.net/media/2112/9018/07699e70-dcc4-449d-aea0-a271c1187186/8f2793e5-ef29-40b3-9801-b246218fef85.mp4","mimetype":"video/mp4","duration":15},{"url":"https://d2290ppie00mze.cloudfront.net/media/2112/9018/07699e70-dcc4-449d-aea0-a271c1187186/97184acd-6aa9-42d8-98ed-95805e692bfb.flv","mimetype":"video/x-flv","duration":15}],"ssl":"1"}]]></AdParameters><VideoClicks><ClickThrough><![CDATA[http://www.extremereach.com]]></ClickThrough><ClickTracking
+        id="vct"><![CDATA[https://beacons.brandads.net/click?cid=24482&creative_id=1003689&line_item=13796381&er_ts=1474395786&session_id=JvM0U6r4R7oYReGPreTO5n1474395786&er_fp=52eeffc21e85f544&subid1=vpaidjsonly]]></ClickTracking></VideoClicks><MediaFiles><MediaFile
+        width="640" height="360" type="application/javascript" delivery="progressive"
+        apiFramework="VPAID"><![CDATA[https://d2f8tie0ouoft.cloudfront.net/vpaid-js/20160811-181900.js]]></MediaFile></MediaFiles></Linear></Creative></Creatives></InLine></Ad></VAST>
+    http_version: 
+  recorded_at: Tue, 20 Sep 2016 18:23:06 GMT
+recorded_with: VCR 3.0.3

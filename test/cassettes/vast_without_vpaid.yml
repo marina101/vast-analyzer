@@ -13,13 +13,15 @@ http_interactions:
       - "*/*"
       User-Agent:
       - Ruby
+      Host:
+      - d.adgear.com
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Wed, 14 Sep 2016 20:51:26 GMT
+      - Wed, 28 Sep 2016 15:12:58 GMT
       Content-Type:
       - application/xml
       Transfer-Encoding:
@@ -31,7 +33,7 @@ http_interactions:
       Server:
       - Apache
       X-Realserver-Ap:
-      - h019
+      - lga-delivery-9
       P3p:
       - CP="NOI OTC OTP OUR NOR"
       Cache-Control:
@@ -41,15 +43,15 @@ http_interactions:
       Expires:
       - Thu, 23 Sep 2004 17:42:04 GMT
       Last-Modified:
-      - Wed, 14 Sep 2016 20:51:26 GMT
+      - Wed, 28 Sep 2016 15:12:58 GMT
       X-Thinktime:
       - '0'
       Set-Cookie:
       - AdGear_Session=0000____; path=/
-      - AdGear_UID=0135aeaa-7abd-11e6-bdb8-782bcb66f86f; expires=Friday, 14-Sep-2018
-        16:51:26 GMT; path=/; domain=.adgear.com
+      - AdGear_UID=0a00f9b4-858e-11e6-9dfa-0cc47ade87f6; expires=Friday, 28-Sep-2018
+        11:12:58 GMT; path=/; domain=.adgear.com
       X-Realserver-Nx:
-      - h019
+      - lga-delivery-9
       Access-Control-Allow-Origin:
       - "*"
     body:
@@ -57,12 +59,12 @@ http_interactions:
       string: |
         <?xml version="1.0" encoding="UTF-8" standalone="no"?>
         <VAST version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="vast.xsd">
-            <Ad id="0135af5e-7abd-11e6-9162-782bcb66f86f">
+            <Ad id="0a00fbbc-858e-11e6-827c-0cc47ade87f6">
                 <InLine>
                     <AdSystem>AdGear</AdSystem>
                     <AdTitle>VAST In-Stream Video</AdTitle>
                     <Description></Description>
-                    <Impression id="AdGear"><![CDATA[https://d.adgear.com/impressions/ext_witness/b=VFhOPTAxMzVhZjVlLTdhYmQtMTFlNi05MTYyLTc4MmJjYjY2Zjg2Zg**/p=223348/a=137187?AG_R=615072987]]></Impression>
+                    <Impression id="AdGear"><![CDATA[https://d.adgear.com/impressions/ext_witness/b=VFhOPTBhMDBmYmJjLTg1OGUtMTFlNi04MjdjLTBjYzQ3YWRlODdmNg**/p=223348/a=137187?AG_R=2045280085]]></Impression>
                     <Impression id="ThirdParty"><![CDATA[]]></Impression>
                     <Impression id="AdGearDataProfile"><![CDATA[https://tracker.samplicio.us/tracker/4f773798-add6-45d0-bb89-f599f9f9ea33/pixel.gif?sid=SamsungIn-app_Retargeted&pid=223348&crid=137187&idfa=]]></Impression>
                     <Creatives>
@@ -70,33 +72,33 @@ http_interactions:
                             <Linear>
                                 <Duration><![CDATA[00:00:15]]></Duration>
                                 <TrackingEvents>
-                                    <Tracking event="start"><![CDATA[https://d.adgear.com/interactions/ext/b=VFhOPTAxMzVhZjVlLTdhYmQtMTFlNi05MTYyLTc4MmJjYjY2Zjg2Zg**/p=223348/a=137187/i=197849?AG_R=252841131]]></Tracking>
+                                    <Tracking event="start"><![CDATA[https://d.adgear.com/interactions/ext/b=VFhOPTBhMDBmYmJjLTg1OGUtMTFlNi04MjdjLTBjYzQ3YWRlODdmNg**/p=223348/a=137187/i=197849?AG_R=471178894]]></Tracking>
                                     <Tracking event="start" id="ThirdParty_start"><![CDATA[]]></Tracking>
-                                    <Tracking event="midpoint"><![CDATA[https://d.adgear.com/interactions/ext/b=VFhOPTAxMzVhZjVlLTdhYmQtMTFlNi05MTYyLTc4MmJjYjY2Zjg2Zg**/p=223348/a=137187/i=197850?AG_R=1414712489]]></Tracking>
+                                    <Tracking event="midpoint"><![CDATA[https://d.adgear.com/interactions/ext/b=VFhOPTBhMDBmYmJjLTg1OGUtMTFlNi04MjdjLTBjYzQ3YWRlODdmNg**/p=223348/a=137187/i=197850?AG_R=1630512440]]></Tracking>
                                     <Tracking event="midpoint" id="ThirdParty_midpoint"><![CDATA[]]></Tracking>
-                                    <Tracking event="firstQuartile"><![CDATA[https://d.adgear.com/interactions/ext/b=VFhOPTAxMzVhZjVlLTdhYmQtMTFlNi05MTYyLTc4MmJjYjY2Zjg2Zg**/p=223348/a=137187/i=197851?AG_R=231185647]]></Tracking>
+                                    <Tracking event="firstQuartile"><![CDATA[https://d.adgear.com/interactions/ext/b=VFhOPTBhMDBmYmJjLTg1OGUtMTFlNi04MjdjLTBjYzQ3YWRlODdmNg**/p=223348/a=137187/i=197851?AG_R=1516201835]]></Tracking>
                                     <Tracking event="firstQuartile" id="ThirdParty_firstQuartile"><![CDATA[]]></Tracking>
-                                    <Tracking event="thirdQuartile"><![CDATA[https://d.adgear.com/interactions/ext/b=VFhOPTAxMzVhZjVlLTdhYmQtMTFlNi05MTYyLTc4MmJjYjY2Zjg2Zg**/p=223348/a=137187/i=197852?AG_R=1178724255]]></Tracking>
+                                    <Tracking event="thirdQuartile"><![CDATA[https://d.adgear.com/interactions/ext/b=VFhOPTBhMDBmYmJjLTg1OGUtMTFlNi04MjdjLTBjYzQ3YWRlODdmNg**/p=223348/a=137187/i=197852?AG_R=1696129376]]></Tracking>
                                     <Tracking event="thirdQuartile" id="ThirdParty_thirdQuartile"><![CDATA[]]></Tracking>
-                                    <Tracking event="complete"><![CDATA[https://d.adgear.com/interactions/ext/b=VFhOPTAxMzVhZjVlLTdhYmQtMTFlNi05MTYyLTc4MmJjYjY2Zjg2Zg**/p=223348/a=137187/i=197853?AG_R=656216535]]></Tracking>
+                                    <Tracking event="complete"><![CDATA[https://d.adgear.com/interactions/ext/b=VFhOPTBhMDBmYmJjLTg1OGUtMTFlNi04MjdjLTBjYzQ3YWRlODdmNg**/p=223348/a=137187/i=197853?AG_R=531311786]]></Tracking>
                                     <Tracking event="complete" id="ThirdParty_complete"><![CDATA[]]></Tracking>
-                                    <Tracking event="mute"><![CDATA[https://d.adgear.com/interactions/ext/b=VFhOPTAxMzVhZjVlLTdhYmQtMTFlNi05MTYyLTc4MmJjYjY2Zjg2Zg**/p=223348/a=137187/i=197854?AG_R=787122906]]></Tracking>
+                                    <Tracking event="mute"><![CDATA[https://d.adgear.com/interactions/ext/b=VFhOPTBhMDBmYmJjLTg1OGUtMTFlNi04MjdjLTBjYzQ3YWRlODdmNg**/p=223348/a=137187/i=197854?AG_R=838908502]]></Tracking>
                                     <Tracking event="mute" id="ThirdParty_mute"><![CDATA[]]></Tracking>
-                                    <Tracking event="unmute"><![CDATA[https://d.adgear.com/interactions/ext/b=VFhOPTAxMzVhZjVlLTdhYmQtMTFlNi05MTYyLTc4MmJjYjY2Zjg2Zg**/p=223348/a=137187/i=197855?AG_R=1631334815]]></Tracking>
+                                    <Tracking event="unmute"><![CDATA[https://d.adgear.com/interactions/ext/b=VFhOPTBhMDBmYmJjLTg1OGUtMTFlNi04MjdjLTBjYzQ3YWRlODdmNg**/p=223348/a=137187/i=197855?AG_R=721294463]]></Tracking>
                                     <Tracking event="unmute" id="ThirdParty_unmute"><![CDATA[]]></Tracking>
-                                    <Tracking event="pause"><![CDATA[https://d.adgear.com/interactions/ext/b=VFhOPTAxMzVhZjVlLTdhYmQtMTFlNi05MTYyLTc4MmJjYjY2Zjg2Zg**/p=223348/a=137187/i=197856?AG_R=1881415685]]></Tracking>
+                                    <Tracking event="pause"><![CDATA[https://d.adgear.com/interactions/ext/b=VFhOPTBhMDBmYmJjLTg1OGUtMTFlNi04MjdjLTBjYzQ3YWRlODdmNg**/p=223348/a=137187/i=197856?AG_R=152124897]]></Tracking>
                                     <Tracking event="pause" id="ThirdParty_pause"><![CDATA[]]></Tracking>
-                                    <Tracking event="rewind"><![CDATA[https://d.adgear.com/interactions/ext/b=VFhOPTAxMzVhZjVlLTdhYmQtMTFlNi05MTYyLTc4MmJjYjY2Zjg2Zg**/p=223348/a=137187/i=197857?AG_R=1324259725]]></Tracking>
+                                    <Tracking event="rewind"><![CDATA[https://d.adgear.com/interactions/ext/b=VFhOPTBhMDBmYmJjLTg1OGUtMTFlNi04MjdjLTBjYzQ3YWRlODdmNg**/p=223348/a=137187/i=197857?AG_R=2085559306]]></Tracking>
                                     <Tracking event="rewind" id="ThirdParty_rewind"><![CDATA[]]></Tracking>
-                                    <Tracking event="skip"><![CDATA[https://d.adgear.com/interactions/ext/b=VFhOPTAxMzVhZjVlLTdhYmQtMTFlNi05MTYyLTc4MmJjYjY2Zjg2Zg**/p=223348/a=137187/i=197858?AG_R=2071180840]]></Tracking>
+                                    <Tracking event="skip"><![CDATA[https://d.adgear.com/interactions/ext/b=VFhOPTBhMDBmYmJjLTg1OGUtMTFlNi04MjdjLTBjYzQ3YWRlODdmNg**/p=223348/a=137187/i=197858?AG_R=1183241361]]></Tracking>
                                     <Tracking event="skip" id="ThirdParty_skip"><![CDATA[]]></Tracking>
-                                    <Tracking event="fullscreen"><![CDATA[https://d.adgear.com/interactions/ext/b=VFhOPTAxMzVhZjVlLTdhYmQtMTFlNi05MTYyLTc4MmJjYjY2Zjg2Zg**/p=223348/a=137187/i=197859?AG_R=914063287]]></Tracking>
+                                    <Tracking event="fullscreen"><![CDATA[https://d.adgear.com/interactions/ext/b=VFhOPTBhMDBmYmJjLTg1OGUtMTFlNi04MjdjLTBjYzQ3YWRlODdmNg**/p=223348/a=137187/i=197859?AG_R=1370198844]]></Tracking>
                                     <Tracking event="fullscreen" id="ThirdParty_fullscreen"><![CDATA[]]></Tracking>
                                 </TrackingEvents>
                                 <AdParameters></AdParameters>
                                 <VideoClicks>
-                                    <ClickThrough><![CDATA[https://d.adgear.com/clicks/ext/b=VFhOPTAxMzVhZjVlLTdhYmQtMTFlNi05MTYyLTc4MmJjYjY2Zjg2Zg**/p=223348/a=137187/c=120006]]></ClickThrough>
-                                    <ClickTracking id="AdGear"><![CDATA[https://d.adgear.com/clicks/ext/b=VFhOPTAxMzVhZjVlLTdhYmQtMTFlNi05MTYyLTc4MmJjYjY2Zjg2Zg**/p=223348/a=137187/c=120007]]></ClickTracking>
+                                    <ClickThrough><![CDATA[https://d.adgear.com/clicks/ext/b=VFhOPTBhMDBmYmJjLTg1OGUtMTFlNi04MjdjLTBjYzQ3YWRlODdmNg**/p=223348/a=137187/c=120006]]></ClickThrough>
+                                    <ClickTracking id="AdGear"><![CDATA[https://d.adgear.com/clicks/ext/b=VFhOPTBhMDBmYmJjLTg1OGUtMTFlNi04MjdjLTBjYzQ3YWRlODdmNg**/p=223348/a=137187/c=120007]]></ClickTracking>
                                 </VideoClicks>
                                 <MediaFiles>
                                     <MediaFile id="1" delivery="progressive" type="video/mp4" bitrate="300" width="300" height="225"><![CDATA[https://a.adgear.com/assets/18455/137187/20160824174653_0.700469601651562_20160525142439_0.859999877054723_Adgear_3d_Logo.mp4]]></MediaFile>
@@ -109,5 +111,5 @@ http_interactions:
             </Ad>
         </VAST>
     http_version: 
-  recorded_at: Wed, 14 Sep 2016 20:51:26 GMT
+  recorded_at: Wed, 28 Sep 2016 15:12:58 GMT
 recorded_with: VCR 3.0.3

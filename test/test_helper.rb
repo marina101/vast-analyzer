@@ -4,6 +4,7 @@ require 'vast_analyzer'
 require 'minitest/autorun'
 require 'vcr'
 require 'minitest-vcr'
+require 'webmock/minitest'
 
 VCR.configure do |c|
   c.cassette_library_dir = 'test/cassettes'
