@@ -1,19 +1,20 @@
 # frozen_string_literal: true
 require 'vast_analyzer/version'
 require 'nokogiri'
-require 'open-uri'
+require 'net/http'
+require 'uri'
 require 'vast_analyzer/errors'
 
 module VastAnalyzer
   class Parser
     attr_accessor :vast, :attributes
 
-    def initialize(url, max_redirects: 5, timeout: 5)
+    def initialize(url, max_redirects: 5)
       @attributes = {}
-      open_xml(url, timeout)
-      unwrap(max_redirects, timeout) unless @vast.xpath('//vastadtaguri').empty?
-      @mediafiles = @vast.xpath('//mediafile')
+      open_xml(url)
       raise NotVastError.new('Error: not vast') if @vast.xpath('//vast').empty?
+      unwrap(max_redirects) unless @vast.xpath('//vastadtaguri').empty?
+      @mediafiles = @vast.xpath('//mediafile')
     end
 
     def categorize
@@ -30,22 +31,30 @@ module VastAnalyzer
 
     private
 
-    def open_xml(url, timeout)
-      @vast = Nokogiri::HTML(open(url, :open_timeout => timeout))
-    rescue Timeout::Error => e
-      raise UrlTimeoutError.new("Timeout error, #{e.message}")
-    rescue OpenURI::HTTPError => e
-      raise ErrorWithHttp.new("ErrorOpeningUrl, status: #{e.message}")
-    rescue StandardError => e
-      raise ErrorOpeningUrl.new("Error opening url, #{e.message}")
+    def open_xml(url, limit: 10)
+      begin
+        raise ArgumentError, 'Too many HTTP redirects' if limit == 0
+        response = Net::HTTP.get_response(URI(url))
+        case response
+        when Net::HTTPSuccess
+          @vast = Nokogiri::HTML(response.body)
+        when Net::HTTPRedirection
+          location = response['location']
+          open_xml(location, {limit: limit - 1})
+        end
+      rescue Timeout::Error
+         raise UrlTimeoutError.new("Timeout error")
+      rescue StandardError => e
+        raise ErrorOpeningUrl.new("Error opening url, #{e.message}")
+      end
     end
 
-    def unwrap(max_redirects, timeout)
+    def unwrap(max_redirects)
       max_redirects.times do
         return if @vast.xpath('//vastadtaguri').empty?
         begin
           url = @vast.xpath('//vastadtaguri')[0].content
-          open_xml(url, timeout)
+          open_xml(url)
         rescue
           raise WrapperRedirectError.new('Error with opening the wrapper url')
         end

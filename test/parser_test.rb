@@ -30,10 +30,10 @@ class ParserTest < Minitest::Test
     assert_match 'Error: not vast', error.message
   end
 
-  def test_custom_max_depth_and_timeout_values_dont_raise_error_on_correct_input
+  def test_custom_max_depth_value_doesnt_raise_error_on_correct_input
     VCR.use_cassette('custom_initialize') do
       uri = URI.parse('https://vast.brandads.net/vast?line_item=13796381&subid1=vpaidjsonly')
-      parser = VastAnalyzer::Parser.new(uri, :max_redirects => 3, :timeout => 0.5)
+      parser = VastAnalyzer::Parser.new(uri, :max_redirects => 3)
       assert_equal 'js_vpaid', parser.categorize[:vpaid_status]
     end
   end
