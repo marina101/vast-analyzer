@@ -32,12 +32,12 @@ module VastAnalyzer
 
     def skippable?
       if (@vast_version == '2.0' || @vast_version == '2.0.1')
-        unless @vast.xpath('//Tracking')
+        unless @vast.xpath('//tracking')
           return @attributes.merge!(:skippable => false)
         end
-        tracks = @vast.xpath('//Tracking') 
+        tracks = @vast.xpath('//tracking') 
         skippable = tracks.any? do |track|
-          track.attr('event').value == 'skip'
+          track.attr('event') == 'skip'
         end
         @attributes.merge!(:skippable => skippable)
       elsif @vast_version == '3.0'
