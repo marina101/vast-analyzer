@@ -31,19 +31,15 @@ module VastAnalyzer
     end
 
     def skippable?
-      if (@vast_version == '2.0' || @vast_version == '2.0.1')
-        unless @vast.xpath('//tracking')
-          return @attributes.merge!(:skippable => false)
-        end
-        tracks = @vast.xpath('//tracking') 
-        skippable = tracks.any? do |track|
+      if @vast_version == '2.0' || @vast_version == '2.0.1'
+        return @attributes.merge!(:skippable => false) unless @vast.xpath('//tracking')
+        skippable = @vast.xpath('//tracking').any? do |track|
           track.attr('event') == 'skip'
         end
         @attributes.merge!(:skippable => skippable)
       elsif @vast_version == '3.0'
-        @vast.xpath('//linear').attr('skipoffset') ? @attributes.merge!(:skippable => true) : @attributes.merge!(:skippable => false)
-      else
-        @attributes.merge!(:skippable => false)
+        skippable = !!@vast.xpath('//linear').attr('skipoffset')
+        @attributes.merge!(:skippable => skippable)
       end
     end
 
@@ -52,7 +48,6 @@ module VastAnalyzer
     def open_xml(url, limit: 2)
       raise ArgumentError, 'Too many HTTP redirects' if limit == 0
       response = Net::HTTP.get_response(URI(url))
-
       case response
       when Net::HTTPSuccess
         @vast = Nokogiri::HTML(response.body)
