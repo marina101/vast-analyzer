@@ -1,0 +1,73 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://vast.brandads.net/vast?ba_cb=__RANDOM_NUMBER__&line_item=13822255
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - vast.brandads.net
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - no-cache, no-store, must-revalidate
+      Content-Type:
+      - application/xml
+      Date:
+      - Thu, 29 Sep 2016 19:06:51 GMT
+      Expires:
+      - '0'
+      P3p:
+      - CP="NOI ADM DEV PSAi COM NAV OUR OTR STP IND DEM"
+      Pragma:
+      - no-cache
+      X-Powered-By:
+      - Express
+      Content-Length:
+      - '1746'
+      Connection:
+      - keep-alive
+    body:
+      encoding: ASCII-8BIT
+      string: <VAST version="3.0"><Ad id="extremereach_ad_13822255_486680_8973018_17483"><InLine><AdSystem
+        version="1.0">Extreme Reach Ad Server</AdSystem><AdTitle>0871-_CHW1-6010-5_D_H</AdTitle><Description>ISCI:0871CHW160105DH</Description><Impression><![CDATA[https://beacons.brandads.net/cp-imp?cid=24676&creative_id=8973018&line_item=13822255&er_ts=1475176011&session_id=hvVKt0tRNqXXsqDBogmoHe1475176011&er_fp=52eeffc21e85f544]]></Impression><Impression><![CDATA[https://ad.doubleclick.net/ddm/trackimp/N6344.1836134SAMSUNGELECTRONICSS/B10294605.137723828;dc_trk_aid=310057397;dc_trk_cid=74064225;ord=1475176012;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=?]]></Impression><Impression><![CDATA[https://sb.scorecardresearch.com/p?c1=3&c2=22068128&c3=24676&c4=8973018&c5=13822255&c6=&c10=1&c11=85395&c13=[SIZE]&c16=XTR&cj=1&ax_fwd=1&rn=1475176012&]]></Impression><Creatives><Creative
+        id="extremereach_creative_8973018" AdID="extremereach_creative_8973018" sequence="1"><Linear skipoffset="00:00:03"><Duration>00:00:10</Duration><TrackingEvents><Tracking
+        event="start"><![CDATA[https://beacons.brandads.net/duration?cid=24676&creative_id=8973018&line_item=13822255&er_ts=1475176011&session_id=hvVKt0tRNqXXsqDBogmoHe1475176011&er_fp=52eeffc21e85f544&percent=0]]></Tracking><Tracking
+        event="firstQuartile"><![CDATA[https://beacons.brandads.net/duration?cid=24676&creative_id=8973018&line_item=13822255&er_ts=1475176011&session_id=hvVKt0tRNqXXsqDBogmoHe1475176011&er_fp=52eeffc21e85f544&percent=.25]]></Tracking><Tracking
+        event="midpoint"><![CDATA[https://beacons.brandads.net/duration?cid=24676&creative_id=8973018&line_item=13822255&er_ts=1475176011&session_id=hvVKt0tRNqXXsqDBogmoHe1475176011&er_fp=52eeffc21e85f544&percent=.5]]></Tracking><Tracking
+        event="thirdQuartile"><![CDATA[https://beacons.brandads.net/duration?cid=24676&creative_id=8973018&line_item=13822255&er_ts=1475176011&session_id=hvVKt0tRNqXXsqDBogmoHe1475176011&er_fp=52eeffc21e85f544&percent=.75]]></Tracking><Tracking
+        event="complete"><![CDATA[https://beacons.brandads.net/duration?cid=24676&creative_id=8973018&line_item=13822255&er_ts=1475176011&session_id=hvVKt0tRNqXXsqDBogmoHe1475176011&er_fp=52eeffc21e85f544&percent=1]]></Tracking></TrackingEvents><AdParameters><![CDATA[{"com":"cid=24676&creative_id=8973018&line_item=13822255&er_ts=1475176011&session_id=hvVKt0tRNqXXsqDBogmoHe1475176011&er_fp=52eeffc21e85f544","clk":"https://ad.doubleclick.net/ddm/trackclk/N6344.1836134SAMSUNGELECTRONICSS/B10294605.137723828;dc_trk_aid=310057397;dc_trk_cid=74064225;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=","vDur":10,"videos":[{"url":"https://d2290ppie00mze.cloudfront.net/media/53578/109622/5d96fcec-feb2-4406-bf90-59c23a9a9d2f/3523ef7b-d775-4d61-ab41-76d24d4d4f23.mp4","mimetype":"video/mp4","duration":10}],"ssl":"1"}]]></AdParameters><VideoClicks><ClickThrough><![CDATA[https://ad.doubleclick.net/ddm/trackclk/N6344.1836134SAMSUNGELECTRONICSS/B10294605.137723828;dc_trk_aid=310057397;dc_trk_cid=74064225;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=]]></ClickThrough><ClickTracking
+        id="vct"><![CDATA[https://beacons.brandads.net/click?cid=24676&creative_id=8973018&line_item=13822255&er_ts=1475176011&session_id=hvVKt0tRNqXXsqDBogmoHe1475176011&er_fp=52eeffc21e85f544]]></ClickTracking></VideoClicks><MediaFiles><MediaFile
+        type="application/x-shockwave-flash" delivery="progressive" apiFramework="VPAID"
+        height="480" width="854" bitrate="1536"><![CDATA[https://d2f8tie0ouoft.cloudfront.net/player/vpaidPlayer-160811-182259.swf?cid=24676&ba_vid=8973018&creative_id=8973018&li=13822255&click=https%3A%2F%2Fad.doubleclick.net%2Fddm%2Ftrackclk%2FN6344.1836134SAMSUNGELECTRONICSS%2FB10294605.137723828%3Bdc_trk_aid%3D310057397%3Bdc_trk_cid%3D74064225%3Bdc_lat%3D%3Bdc_rdid%3D%3Btag_for_child_directed_treatment%3D&session_id=hvVKt0tRNqXXsqDBogmoHe1475176011&er_fp=52eeffc21e85f544&er_ts=1475176011&dur=10&beaconserver=beacons.brandads.net&port=80&beaconserver2=beacons.brandads.net&assettype=mp4&asset=https%3A%2F%2Fd2290ppie00mze.cloudfront.net%2Fmedia%2F53578%2F109622%2F5d96fcec-feb2-4406-bf90-59c23a9a9d2f%2F3523ef7b-d775-4d61-ab41-76d24d4d4f23.mp4&ssl=true&.swf]]></MediaFile><MediaFile
+        delivery="progressive" width="854" height="480" id="video/mp4_1500" bitrate="1536"
+        type="video/mp4"><![CDATA[https://d2290ppie00mze.cloudfront.net/media/53578/109622/5d96fcec-feb2-4406-bf90-59c23a9a9d2f/3523ef7b-d775-4d61-ab41-76d24d4d4f23.mp4]]></MediaFile><MediaFile
+        delivery="progressive" width="1920" height="1080" id="video/mp4_2500" bitrate="2560"
+        type="video/mp4"><![CDATA[https://d2290ppie00mze.cloudfront.net/media/53578/109622/5d96fcec-feb2-4406-bf90-59c23a9a9d2f/1b788b78-a49e-4443-955c-020c68bda79f.mp4]]></MediaFile><MediaFile
+        delivery="progressive" width="640" height="360" id="video/mp4_700" bitrate="716"
+        type="video/mp4"><![CDATA[https://d2290ppie00mze.cloudfront.net/media/53578/109622/5d96fcec-feb2-4406-bf90-59c23a9a9d2f/886582f7-628f-47bc-8eb7-b2dbeb433f91.mp4]]></MediaFile><MediaFile
+        delivery="progressive" width="640" height="352" id="video/webm_1000" bitrate="1024"
+        type="video/webm"><![CDATA[https://d2290ppie00mze.cloudfront.net/media/53578/109622/5d96fcec-feb2-4406-bf90-59c23a9a9d2f/6590c9e1-d5a8-42b6-a67c-5d786319d6b1.webm]]></MediaFile><MediaFile
+        type="application/x-shockwave-flash" delivery="progressive" apiFramework="VPAID"
+        height="480" width="854" bitrate="1536"><![CDATA[https://d2f8tie0ouoft.cloudfront.net/player/vpaidPlayer-160811-182259.swf?cid=24676&ba_vid=8973018&creative_id=8973018&li=13822255&click=https%3A%2F%2Fad.doubleclick.net%2Fddm%2Ftrackclk%2FN6344.1836134SAMSUNGELECTRONICSS%2FB10294605.137723828%3Bdc_trk_aid%3D310057397%3Bdc_trk_cid%3D74064225%3Bdc_lat%3D%3Bdc_rdid%3D%3Btag_for_child_directed_treatment%3D&session_id=hvVKt0tRNqXXsqDBogmoHe1475176011&er_fp=52eeffc21e85f544&er_ts=1475176011&dur=10&beaconserver=beacons.brandads.net&port=80&beaconserver2=beacons.brandads.net&assettype=mp4&asset=https%3A%2F%2Fd2290ppie00mze.cloudfront.net%2Fmedia%2F53578%2F109622%2F5d96fcec-feb2-4406-bf90-59c23a9a9d2f%2F3523ef7b-d775-4d61-ab41-76d24d4d4f23.mp4&ssl=true&.swf]]></MediaFile></MediaFiles></Linear></Creative><Creative
+        AdID="comp_17483" sequence="1"><CompanionAds><Companion id="comp_17483_300x60"
+        width="300" height="60"><StaticResource creativeType="image/jpeg"><![CDATA[https://d2290ppie00mze.cloudfront.net/media/53578/109622/668c10cf-130d-49aa-a72a-ffc121b036e7.jpg]]></StaticResource><TrackingEvents><Tracking
+        event="creativeView"><![CDATA[https://beacons.brandads.net/imp-comp?cid=24676&creative_id=8973018&line_item=13822255&er_ts=1475176011&session_id=hvVKt0tRNqXXsqDBogmoHe1475176011&er_fp=52eeffc21e85f544&subid3=300x60&subid2=17483]]></Tracking></TrackingEvents><CompanionClickThrough><![CDATA[https://beacons.brandads.net/click-comp?cid=24676&creative_id=8973018&line_item=13822255&er_ts=1475176011&session_id=hvVKt0tRNqXXsqDBogmoHe1475176011&er_fp=52eeffc21e85f544&subid3=300x60&subid2=17483&forwardto=https%3A%2F%2Fad.doubleclick.net%2Fddm%2Ftrackclk%2FN6344.1836134SAMSUNGELECTRONICSS%2FB10294605.137723828%3Bdc_trk_aid%3D310057397%3Bdc_trk_cid%3D74064225%3Bdc_lat%3D%3Bdc_rdid%3D%3Btag_for_child_directed_treatment%3D]]></CompanionClickThrough></Companion></CompanionAds></Creative></Creatives></InLine></Ad></VAST>
+    http_version: 
+  recorded_at: Thu, 29 Sep 2016 19:06:51 GMT
+recorded_with: VCR 3.0.3

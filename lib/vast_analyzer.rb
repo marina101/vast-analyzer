@@ -30,6 +30,23 @@ module VastAnalyzer
       end
     end
 
+    def skippable?
+      if (@vast_version == '2.0' || @vast_version == '2.0.1')
+        unless @vast.xpath('//Tracking')
+          return @attributes.merge!(:skippable => false)
+        end
+        tracks = @vast.xpath('//Tracking') 
+        skippable = tracks.any? do |track|
+          track.attr('event').value == 'skip'
+        end
+        @attributes.merge!(:skippable => skippable)
+      elsif @vast_version == '3.0'
+        @vast.xpath('//linear').attr('skipoffset') ? @attributes.merge!(:skippable => true) : @attributes.merge!(:skippable => false)
+      else
+        @attributes.merge!(:skippable => false)
+      end
+    end
+
     private
 
     def open_xml(url, limit: 2)
