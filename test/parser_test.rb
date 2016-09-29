@@ -142,4 +142,21 @@ class ParserTest < Minitest::Test
       VastAnalyzer::Parser.new(uri)
     end
   end
+
+  def test_determine_vast_version_correctly_parses_version
+    VCR.use_cassette('only_flash_vpaid') do
+      uri = URI.parse('https://vast.brandads.net/vast?line_item=13822255&ba_cb=__RANDOM_NUMBER__')
+      parser = VastAnalyzer::Parser.new(uri)
+      assert_match '2.0', parser.vast_version
+    end
+  end
+
+  def test_exception_thrown_when_vast_version_not_determinable_or_deprecated
+    assert_raises VastAnalyzer::NotVastError do
+      VCR.use_cassette('bad_vast_version') do
+        uri = URI.parse('http://demo.tremorvideo.com/proddev/vast/vast1VPAIDLinear.xml')
+        VastAnalyzer::Parser.new(uri)
+      end
+    end
+  end
 end

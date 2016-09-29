@@ -7,13 +7,14 @@ require 'vast_analyzer/errors'
 
 module VastAnalyzer
   class Parser
-    attr_reader :vast, :attributes
+    attr_reader :vast, :attributes, :vast_version
 
     def initialize(url, max_redirects: 5)
       @attributes = {}
       open_xml(url)
       raise NotVastError.new('Error: not vast') if @vast.xpath('//vast').empty?
       unwrap(max_redirects) unless @vast.xpath('//vastadtaguri').empty?
+      @vast_version = @vast.xpath('//vast').attr('version').value
     end
 
     def categorize
