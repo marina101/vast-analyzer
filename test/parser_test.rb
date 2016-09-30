@@ -32,7 +32,7 @@ class ParserTest < Minitest::Test
     VCR.use_cassette('custom_initialize') do
       parser = VastAnalyzer::Parser.new('https://vast.brandads.net/vast?'\
         'line_item=13796381&subid1=vpaidjsonly', :max_redirects => 3)
-      assert_equal 'js_vpaid', parser.categorize[:vpaid_status]
+      assert_equal 'js_vpaid', parser.attributes[:vpaid_status]
     end
   end
 
@@ -41,21 +41,21 @@ class ParserTest < Minitest::Test
       parser = VastAnalyzer::Parser.new('https://fw.adsafeprotected.com/vast/fwjsvid/st/58622/'\
         '9328507/skeleton.js?originalVast=https://bs.serving-sys.com/BurstingPipe/'\
         'adServer.bs?cn=is&c=23&pl=VAST&pli=18103306&PluID=0&pos=598&ord=%time%&cim=1')
-      assert_equal 'flash_js_vpaid', parser.categorize[:vpaid_status]
+      assert_equal 'flash_js_vpaid', parser.attributes[:vpaid_status]
     end
   end
 
   def test_no_js_and_flash_vpaid_false_positives
     VCR.use_cassette('only_js') do
       parser = VastAnalyzer::Parser.new('https://vast.brandads.net/vast?line_item=13796381&subid1=vpaidjsonly')
-      refute_equal 'flash_js_vpaid', parser.categorize[:vpaid_status]
+      refute_equal 'flash_js_vpaid', parser.attributes[:vpaid_status]
     end
   end
 
   def test_categorize_identifies_js_only_vpaid
     VCR.use_cassette('only_js') do
       parser = VastAnalyzer::Parser.new('https://vast.brandads.net/vast?line_item=13796381&subid1=vpaidjsonly')
-      assert_equal 'js_vpaid', parser.categorize[:vpaid_status]
+      assert_equal 'js_vpaid', parser.attributes[:vpaid_status]
     end
   end
 
@@ -64,35 +64,35 @@ class ParserTest < Minitest::Test
       parser = VastAnalyzer::Parser.new('https://fw.adsafeprotected.com/vast/fwjsvid/st/58622/'\
       '9328507/skeleton.js?originalVast=https://bs.serving-sys.com/BurstingPipe/adServer.bs?cn'\
       '=is&c=23&pl=VAST&pli=18103306&PluID=0&pos=598&ord=%time%&cim=1')
-      refute_equal 'js_vpaid', parser.categorize[:vpaid_status]
+      refute_equal 'js_vpaid', parser.attributes[:vpaid_status]
     end
   end
 
   def test_categorize_identifies_flash_only_vpaid
     VCR.use_cassette('only_flash_vpaid') do
       parser = VastAnalyzer::Parser.new('https://vast.brandads.net/vast?line_item=13822255&ba_cb=__RANDOM_NUMBER__')
-      assert_equal 'flash_vpaid', parser.categorize[:vpaid_status]
+      assert_equal 'flash_vpaid', parser.attributes[:vpaid_status]
     end
   end
 
   def test_has_no_flash_only_false_positives
     VCR.use_cassette('vast_without_vpaid') do
       parser = VastAnalyzer::Parser.new('https://d.adgear.com/impressions/ext_nc/p=223348.xml')
-      refute_equal 'flash_vpaid', parser.categorize[:vpaid_status]
+      refute_equal 'flash_vpaid', parser.attributes[:vpaid_status]
     end
   end
 
   def test_categorize_identifies_when_no_vpaid
     VCR.use_cassette('vast_without_vpaid') do
       parser = VastAnalyzer::Parser.new('https://d.adgear.com/impressions/ext_nc/p=223348.xml')
-      assert_equal 'neither', parser.categorize[:vpaid_status]
+      assert_equal 'neither', parser.attributes[:vpaid_status]
     end
   end
 
   def test_no_vpaid_has_no_false_positives
     VCR.use_cassette('only_flash_vpaid') do
       parser = VastAnalyzer::Parser.new('https://vast.brandads.net/vast?line_item=13822255&ba_cb=__RANDOM_NUMBER__')
-      refute_equal 'neither', parser.categorize[:vpaid_status]
+      refute_equal 'neither', parser.attributes[:vpaid_status]
     end
   end
 
@@ -147,28 +147,28 @@ class ParserTest < Minitest::Test
   def test_skippable_detects_vast_3_skippable_ad
     VCR.use_cassette('vast_3_skippable') do
       parser = VastAnalyzer::Parser.new('https://vast.brandads.net/vast?line_item=13822255&ba_cb=__RANDOM_NUMBER__')
-      assert parser.skippable?[:skippable] == true
+      assert parser.attributes[:skippable] == true
     end
   end
 
   def test_skippable_detects_vast_3_not_skippable_ad
     VCR.use_cassette('vast_3_not_skippable') do
       parser = VastAnalyzer::Parser.new('https://vast.brandads.net/vast?line_item=13822255&ba_cb=__RANDOM_NUMBER__')
-      assert parser.skippable?[:skippable] == false
+      assert parser.attributes[:skippable] == false
     end
   end
 
   def test_skippable_detects_vast_2_skippable_ad
     VCR.use_cassette('vast_2_skippable') do
       parser = VastAnalyzer::Parser.new('https://vast.brandads.net/vast?line_item=13822255&ba_cb=__RANDOM_NUMBER__')
-      assert parser.skippable?[:skippable] == true
+      assert parser.attributes[:skippable] == true
     end
   end
 
   def test_skippable_detects_vast_2_non_skippable_ad
     VCR.use_cassette('only_flash_vpaid') do
       parser = VastAnalyzer::Parser.new('https://vast.brandads.net/vast?line_item=13822255&ba_cb=__RANDOM_NUMBER__')
-      assert parser.skippable?[:skippable] == false
+      assert parser.attributes[:skippable] == false
     end
   end
 end

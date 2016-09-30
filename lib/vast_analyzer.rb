@@ -7,7 +7,7 @@ require 'vast_analyzer/errors'
 
 module VastAnalyzer
   class Parser
-    attr_reader :vast, :attributes, :vast_version
+    attr_reader :vast, :vast_version
 
     def initialize(url, max_redirects: 5)
       @attributes = {}
@@ -17,33 +17,38 @@ module VastAnalyzer
       @vast_version = @vast.xpath('//vast').attr('version').value
     end
 
+    def attributes
+      {
+        :vpaid_status => categorize,
+        :skippable => skippable?
+      }
+    end    
+
+    private
+
     def categorize
       @mediafiles = @vast.xpath('//mediafile')
       if include_flash_vpaid? && include_js?
-        @attributes.merge!(:vpaid_status => 'flash_js_vpaid')
+        'flash_js_vpaid'
       elsif include_flash_vpaid?
-        @attributes.merge!(:vpaid_status => 'flash_vpaid')
+       'flash_vpaid'
       elsif include_js?
-        @attributes.merge!(:vpaid_status => 'js_vpaid')
+        'js_vpaid'
       else
-        @attributes.merge!(:vpaid_status => 'neither')
+       'neither'
       end
     end
 
     def skippable?
       if @vast_version == '2.0' || @vast_version == '2.0.1'
-        return @attributes.merge!(:skippable => false) unless @vast.xpath('//tracking')
+        return false unless @vast.xpath('//tracking')
         skippable = @vast.xpath('//tracking').any? do |track|
           track.attr('event') == 'skip'
         end
-        @attributes.merge!(:skippable => skippable)
       elsif @vast_version == '3.0'
         skippable = !!@vast.xpath('//linear').attr('skipoffset')
-        @attributes.merge!(:skippable => skippable)
       end
     end
-
-    private
 
     def open_xml(url, limit: 2)
       raise ArgumentError, 'Too many HTTP redirects' if limit == 0
