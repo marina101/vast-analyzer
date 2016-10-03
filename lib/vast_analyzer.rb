@@ -7,34 +7,52 @@ require 'vast_analyzer/errors'
 
 module VastAnalyzer
   class Parser
-    attr_accessor :vast, :attributes
+    attr_reader :vast, :vast_version
 
     def initialize(url, max_redirects: 5)
       @attributes = {}
       open_xml(url)
       raise NotVastError.new('Error: not vast') if @vast.xpath('//vast').empty?
       unwrap(max_redirects) unless @vast.xpath('//vastadtaguri').empty?
-      @mediafiles = @vast.xpath('//mediafile')
+      @vast_version = @vast.xpath('//vast').attr('version').value
     end
 
-    def categorize
-      if include_flash_vpaid? && include_js?
-        @attributes.merge!(:vpaid_status => 'flash_js_vpaid')
-      elsif include_flash_vpaid?
-        @attributes.merge!(:vpaid_status => 'flash_vpaid')
-      elsif include_js?
-        @attributes.merge!(:vpaid_status => 'js_vpaid')
-      else
-        @attributes.merge!(:vpaid_status => 'neither')
-      end
+    def attributes
+      {
+        :vpaid_status => categorize,
+        :skippable => skippable?
+      }
     end
 
     private
 
+    def categorize
+      @mediafiles = @vast.xpath('//mediafile')
+      if include_flash_vpaid? && include_js?
+        'flash_js_vpaid'
+      elsif include_flash_vpaid?
+        'flash_vpaid'
+      elsif include_js?
+        'js_vpaid'
+      else
+        'neither'
+      end
+    end
+
+    def skippable?
+      if @vast_version == '2.0' || @vast_version == '2.0.1'
+        return false unless @vast.xpath('//tracking')
+        @vast.xpath('//tracking').any? do |track|
+          track.attr('event') == 'skip'
+        end
+      elsif @vast_version == '3.0'
+        !!@vast.xpath('//linear').attr('skipoffset')
+      end
+    end
+
     def open_xml(url, limit: 2)
       raise ArgumentError, 'Too many HTTP redirects' if limit == 0
       response = Net::HTTP.get_response(URI(url))
-
       case response
       when Net::HTTPSuccess
         @vast = Nokogiri::HTML(response.body)
