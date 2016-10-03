@@ -22,7 +22,7 @@ module VastAnalyzer
         :vpaid_status => categorize,
         :skippable => skippable?
       }
-    end    
+    end
 
     private
 
@@ -31,11 +31,11 @@ module VastAnalyzer
       if include_flash_vpaid? && include_js?
         'flash_js_vpaid'
       elsif include_flash_vpaid?
-       'flash_vpaid'
+        'flash_vpaid'
       elsif include_js?
         'js_vpaid'
       else
-       'neither'
+        'neither'
       end
     end
 
