@@ -42,11 +42,11 @@ module VastAnalyzer
     def skippable?
       if @vast_version == '2.0' || @vast_version == '2.0.1'
         return false unless @vast.xpath('//tracking')
-        skippable = @vast.xpath('//tracking').any? do |track|
+        @vast.xpath('//tracking').any? do |track|
           track.attr('event') == 'skip'
         end
       elsif @vast_version == '3.0'
-        skippable = !!@vast.xpath('//linear').attr('skipoffset')
+        !!@vast.xpath('//linear').attr('skipoffset')
       end
     end
 

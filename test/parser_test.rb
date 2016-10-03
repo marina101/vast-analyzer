@@ -147,28 +147,28 @@ class ParserTest < Minitest::Test
   def test_skippable_detects_vast_3_skippable_ad
     VCR.use_cassette('vast_3_skippable') do
       parser = VastAnalyzer::Parser.new('https://vast.brandads.net/vast?line_item=13822255&ba_cb=__RANDOM_NUMBER__')
-      assert parser.attributes[:skippable] == true
+      assert parser.attributes[:skippable]
     end
   end
 
   def test_skippable_detects_vast_3_not_skippable_ad
     VCR.use_cassette('vast_3_not_skippable') do
       parser = VastAnalyzer::Parser.new('https://vast.brandads.net/vast?line_item=13822255&ba_cb=__RANDOM_NUMBER__')
-      assert parser.attributes[:skippable] == false
+      assert !parser.attributes[:skippable]
     end
   end
 
   def test_skippable_detects_vast_2_skippable_ad
     VCR.use_cassette('vast_2_skippable') do
       parser = VastAnalyzer::Parser.new('https://vast.brandads.net/vast?line_item=13822255&ba_cb=__RANDOM_NUMBER__')
-      assert parser.attributes[:skippable] == true
+      assert parser.attributes[:skippable]
     end
   end
 
   def test_skippable_detects_vast_2_non_skippable_ad
     VCR.use_cassette('only_flash_vpaid') do
       parser = VastAnalyzer::Parser.new('https://vast.brandads.net/vast?line_item=13822255&ba_cb=__RANDOM_NUMBER__')
-      assert parser.attributes[:skippable] == false
+      assert !parser.attributes[:skippable]
     end
   end
 end
