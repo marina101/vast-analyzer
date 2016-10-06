@@ -171,4 +171,11 @@ class ParserTest < Minitest::Test
       assert !parser.attributes[:skippable]
     end
   end
+
+  def test_complex_uris_are_successfully_parsed
+    VCR.use_cassette('complex_uri') do
+      parser = VastAnalyzer::Parser.new('https://ad.doubleclick.net/ddm/pfadx/N7313.1933103ELTORO/B9480814.129356516;sz=0x0;ord=[timestamp];dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;dcmt=text/xml')
+      assert_equal 'flash_vpaid', parser.attributes[:vpaid_status]
+    end
+  end
 end

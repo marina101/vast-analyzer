@@ -2,7 +2,7 @@
 require 'vast_analyzer/version'
 require 'nokogiri'
 require 'net/http'
-require 'uri'
+require "addressable/uri"
 require 'vast_analyzer/errors'
 
 module VastAnalyzer
@@ -12,7 +12,7 @@ module VastAnalyzer
     def initialize(url, max_redirects: 5)
       @attributes = {}
       open_xml(url)
-      raise NotVastError.new('Error: not vast') if @vast.xpath('//vast').empty?
+      raise NotVastError.new('Error: not vast') unless @vast&.xpath('//vast').any?
       unwrap(max_redirects) unless @vast.xpath('//vastadtaguri').empty?
       @vast_version = @vast.xpath('//vast').attr('version').value
     end
@@ -52,7 +52,8 @@ module VastAnalyzer
 
     def open_xml(url, limit: 2)
       raise ArgumentError, 'Too many HTTP redirects' if limit == 0
-      response = Net::HTTP.get_response(URI(url))
+      uri = Addressable::URI.parse(url)
+      response = Net::HTTP.get_response(uri)
       case response
       when Net::HTTPSuccess
         @vast = Nokogiri::HTML(response.body)
