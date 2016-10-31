@@ -2,7 +2,7 @@
 require 'vast_analyzer/version'
 require 'nokogiri'
 require 'net/http'
-require "addressable/uri"
+require 'addressable/uri'
 require 'vast_analyzer/errors'
 
 module VastAnalyzer
