@@ -25,7 +25,7 @@ class ParserTest < Minitest::Test
         VastAnalyzer::Parser.new('https://www.google.com')
       end
     end
-    assert_match 'Error: not vast', error.message
+    assert_match 'Not vast, url: https://www.google.com', error.message
   end
 
   def test_custom_max_depth_value_doesnt_raise_error_on_correct_input
@@ -174,7 +174,9 @@ class ParserTest < Minitest::Test
 
   def test_complex_uris_are_successfully_parsed
     VCR.use_cassette('complex_uri') do
-      parser = VastAnalyzer::Parser.new('https://ad.doubleclick.net/ddm/pfadx/N7313.1933103ELTORO/B9480814.129356516;sz=0x0;ord=[timestamp];dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;dcmt=text/xml')
+      parser = VastAnalyzer::Parser.new('https://ad.doubleclick.net/ddm/pfadx/N7313.'\
+        '1933103ELTORO/B9480814.129356516;sz=0x0;ord=[timestamp];dc_lat=;dc_rdid=;'\
+        'tag_for_child_directed_treatment=;dcmt=text/xml')
       assert_equal 'flash_vpaid', parser.attributes[:vpaid_status]
     end
   end
