@@ -12,7 +12,7 @@ module VastAnalyzer
     def initialize(url, max_redirects: 5)
       @attributes = {}
       open_xml(url)
-      raise NotVastError.new("Error: not vast, url: #{url}") unless @vast&.xpath('//vast')&.any?
+      raise NotVastError.new("Not vast, url: #{url}") unless @vast&.xpath('//vast')&.any?
       unwrap(max_redirects) unless @vast.xpath('//vastadtaguri').empty?
       @vast_version = @vast.xpath('//vast').attr('version').value
     end
