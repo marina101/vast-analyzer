@@ -60,7 +60,8 @@ module VastAnalyzer
       when Net::HTTPRedirection
         open_xml(response['location'], :limit => limit - 1)
       else
-        raise ErrorOpeningUrl.new('Net/http error')
+        raise ErrorOpeningUrl.new("Net/http error, #{response.code}, #{response.message}"\
+          "url: #{url}")
       end
     rescue Timeout::Error
       raise UrlTimeoutError.new('Timeout error')
