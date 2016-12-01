@@ -22,7 +22,7 @@ Simply pass your xml vast url to the parser object to instantiate a parser linke
 parser = VastAnalyzer::Parser.new('https://www.vastexample.xml')
 ```
 
-To categorize whether your vast contiains vpaid, flash, and/or js, simply call `categorize` on it:
+To categorize whether your vast contains vpaid, flash, and/or js, simply call `categorize` on it:
 
 ```ruby
 parser.categorize[:vpaid_status]
