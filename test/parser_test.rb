@@ -172,6 +172,24 @@ class ParserResultTest < Minitest::Test
     end
   end
 
+  def test_mediafiles_detects_vast_2
+    VCR.use_cassette('only_flash_vpaid') do
+      result = VastAnalyzer.parse('https://vast.brandads.net/vast?line_item=13822255&ba_cb=__RANDOM_NUMBER__')
+      result.mediafiles.each do |m|
+        assert_match m['url'][0..3], 'http'
+      end
+    end
+  end
+
+  def test_mediafiles_detects_vast_3
+    VCR.use_cassette('vast_3_not_skippable') do
+      result = VastAnalyzer.parse('https://vast.brandads.net/vast?line_item=13822255&ba_cb=__RANDOM_NUMBER__')
+      result.mediafiles.each do |m|
+        assert_match m['url'][0..3], 'http'
+      end
+    end
+  end
+
   def test_complex_uris_are_successfully_parsed
     VCR.use_cassette('complex_uri') do
       result = VastAnalyzer.parse('https://ad.doubleclick.net/ddm/pfadx/N7313.'\
