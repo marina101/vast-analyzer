@@ -99,7 +99,7 @@ class ParserTest < Minitest::Test
   def test_wrapper_successfully_unwrapped_and_redirected_to_ad
     VCR.use_cassette('simple_wrapper') do
       parser = VastAnalyzer::Parser.new('http://demo.tremorvideo.com/proddev/vast/vast_wrapper_linear_1.xml')
-      assert !parser.vast.xpath('//mediafile').empty?
+      assert !parser.vast.xpath('//MediaFile').empty?
     end
   end
 
