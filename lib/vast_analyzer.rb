@@ -1,33 +1,28 @@
 # frozen_string_literal: true
 require 'vast_analyzer/version'
+require 'vast_analyzer/errors'
 require 'nokogiri'
 require 'net/http'
 require 'addressable/uri'
-require 'vast_analyzer/errors'
 
 module VastAnalyzer
-  class Parser
+
+  def self.parse(url, max_redirects: 5)
+    ParserResult.new(url)
+  end
+
+  class ParserResult
     attr_reader :vast, :vast_version
 
     def initialize(url, max_redirects: 5)
-      @attributes = {}
       open_xml(url)
-      raise NotVastError.new("Not vast, url: #{url}") unless @vast&.xpath('//vast')&.any?
-      unwrap(max_redirects) unless @vast.xpath('//vastadtaguri').empty?
-      @vast_version = @vast.xpath('//vast').attr('version').value
+      vast_root = @vast&.xpath('//VAST')
+      raise NotVastError.new("Not vast, url: #{url}") unless vast_root&.any?
+      unwrap(max_redirects) unless @vast.xpath('//VASTAdTagURI').empty?
+      @vast_version = vast_root.attr('version').value
     end
 
-    def attributes
-      {
-        :vpaid_status => categorize,
-        :skippable => skippable?
-      }
-    end
-
-    private
-
-    def categorize
-      @mediafiles = @vast.xpath('//mediafile')
+    def vpaid_status
       if include_flash_vpaid? && include_js?
         'flash_js_vpaid'
       elsif include_flash_vpaid?
@@ -40,14 +35,19 @@ module VastAnalyzer
     end
 
     def skippable?
-      if @vast_version == '2.0' || @vast_version == '2.0.1'
-        return false unless @vast.xpath('//tracking')
-        @vast.xpath('//tracking').any? do |track|
-          track.attr('event') == 'skip'
+      @skippable ||=
+        case @vast_version
+        when '2.0', '2.0.1'
+          !!@vast.xpath('//Tracking')&.any? { |track| track.attr('event') == 'skip' }
+        when '3.0'
+          !!@vast.xpath('//Linear').attr('skipoffset')
         end
-      elsif @vast_version == '3.0'
-        !!@vast.xpath('//linear').attr('skipoffset')
-      end
+    end
+
+    private
+
+    def mediafiles
+      @mediafiles ||= @vast.xpath('//MediaFile')
     end
 
     def open_xml(url, limit: 2)
@@ -56,7 +56,7 @@ module VastAnalyzer
       response = Net::HTTP.get_response(uri)
       case response
       when Net::HTTPSuccess
-        @vast = Nokogiri::HTML(response.body)
+        @vast = Nokogiri::XML(response.body)
       when Net::HTTPRedirection
         open_xml(response['location'], :limit => limit - 1)
       else
@@ -71,9 +71,9 @@ module VastAnalyzer
 
     def unwrap(max_redirects)
       max_redirects.times do
-        return if @vast.xpath('//vastadtaguri').empty?
+        return if @vast.xpath('//VASTAdTagURI').empty?
         begin
-          url = @vast.xpath('//vastadtaguri')[0].content
+          url = @vast.xpath('//VASTAdTagURI')[0].content
           open_xml(url)
         rescue
           raise WrapperRedirectError.new('Error with opening the wrapper url')
@@ -83,8 +83,8 @@ module VastAnalyzer
     end
 
     def include_flash_vpaid?
-      @include_flash ||= @mediafiles.any? do |mediafile|
-        is_vpaid_api = mediafile.attr('apiframework') == 'VPAID'
+      @include_flash ||= mediafiles.any? do |mediafile|
+        is_vpaid_api = mediafile.attr('apiFramework') == 'VPAID'
         uses_flash = ['application/x-shockwave-flash', 'video/x-flv']
                      .include?(mediafile.attr('type'))
         is_vpaid_api && uses_flash
@@ -92,9 +92,10 @@ module VastAnalyzer
     end
 
     def include_js?
-      @include_js ||= @mediafiles.any? do |mediafile|
+      @include_js ||= mediafiles.any? do |mediafile|
         ['application/x-javascript', 'application/javascript'].include?(mediafile.attr('type'))
       end
     end
   end
+  private_constant :ParserResult
 end
