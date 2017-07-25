@@ -44,11 +44,15 @@ module VastAnalyzer
         end
     end
 
-    private
-
     def mediafiles
-      @mediafiles ||= @vast.xpath('//MediaFile')
+      @mediafiles ||= @vast.xpath('//MediaFile')&.map do |node|
+        h = node.to_h
+        h['url'] = node.content
+        h
+      end
     end
+
+    private
 
     def open_xml(url, limit: 2)
       raise ArgumentError.new('Too many HTTP redirects') if limit == 0
@@ -84,16 +88,16 @@ module VastAnalyzer
 
     def include_flash_vpaid?
       @include_flash ||= mediafiles.any? do |mediafile|
-        is_vpaid_api = mediafile.attr('apiFramework') == 'VPAID'
+        is_vpaid_api = mediafile['apiFramework'] == 'VPAID'
         uses_flash = ['application/x-shockwave-flash', 'video/x-flv']
-                     .include?(mediafile.attr('type'))
+                     .include?(mediafile['type'])
         is_vpaid_api && uses_flash
       end
     end
 
     def include_js?
       @include_js ||= mediafiles.any? do |mediafile|
-        ['application/x-javascript', 'application/javascript'].include?(mediafile.attr('type'))
+        ['application/x-javascript', 'application/javascript'].include?(mediafile['type'])
       end
     end
   end
