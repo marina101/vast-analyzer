@@ -60,7 +60,7 @@ module VastAnalyzer
       response = Net::HTTP.get_response(uri)
       case response
       when Net::HTTPSuccess
-        @vast = Nokogiri::XML(response.body, nil, nil, Nokogiri::XML::ParseOptions.new.noblanks)
+        @vast = Nokogiri::XML(response.body){ |config| config.noblanks }
       when Net::HTTPRedirection
         open_xml(response['location'], :limit => limit - 1)
       else
