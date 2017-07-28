@@ -4,7 +4,6 @@ require 'vast_analyzer/errors'
 require 'nokogiri'
 require 'net/http'
 require 'addressable/uri'
-require 'byebug'
 
 module VastAnalyzer
 
@@ -59,7 +58,6 @@ module VastAnalyzer
       raise ArgumentError.new('Too many HTTP redirects') if limit == 0
       uri = Addressable::URI.parse(url)
       response = Net::HTTP.get_response(uri)
-      byebug
       case response
       when Net::HTTPSuccess
         @vast = Nokogiri::XML(response.body, nil, nil, Nokogiri::XML::ParseOptions.new.noblanks)
