@@ -8,10 +8,10 @@ Gem::Specification.new do |spec|
   spec.name = 'vast_analyzer'
   spec.version = VastAnalyzer::VERSION
   spec.authors = ['Marina Chirchikova']
-  spec.email = ['marina.chirchikova@adgear.com']
+  spec.email = ['mchirc1@gmail.com']
 
   spec.summary = 'A VAST analyzer that autodetects VPAID, flash, and js in VAST media files'
-  spec.homepage = "TODO: Put your gem's website or public repo URL here."
+  spec.homepage = 'https://github.com/marina101/vast-anaylzer'
   spec.license = 'MIT'
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
@@ -31,14 +31,14 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.required_ruby_version = '>= 2.3.0'
-  spec.add_development_dependency 'bundler', '~> 1.13'
-  spec.add_development_dependency 'rake', '~> 10.0'
+  spec.add_runtime_dependency 'bundler', '~> 1.13'
+  spec.add_runtime_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'minitest', '~> 5.0'
-  spec.add_development_dependency 'nokogiri'
+  spec.add_runtime_dependency 'nokogiri', '>= 1.8.1'
   spec.add_development_dependency 'rubocop', '0.39.0'
   spec.add_development_dependency 'vcr'
   spec.add_development_dependency 'webmock'
   spec.add_development_dependency 'minitest-vcr'
   spec.add_development_dependency 'byebug'
-  spec.add_development_dependency 'addressable'
+  spec.add_runtime_dependency 'addressable'
 end
