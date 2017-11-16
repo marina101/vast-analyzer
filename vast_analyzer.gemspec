@@ -4,19 +4,19 @@ lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'vast_analyzer/version'
 
-Gem::Specification.new do |spec|
+Gem::Specification.new 'vast_analyzer', '1.0.3' do |spec|
   spec.name = 'vast_analyzer'
-  spec.version = VastAnalyzer::VERSION
+  spec.version = '1.0.3'
   spec.authors = ['Marina Chirchikova']
 
   spec.summary = 'A VAST analyzer that autodetects VPAID, flash, and js in VAST media files'
-  spec.homepage = 'https://github.com/marina101/vast-anaylzer'
+  spec.homepage = 'https://github.com/marina101/vast-analyzer'
   spec.license = 'MIT'
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
   if spec.respond_to?(:metadata)
-    spec.metadata['allowed_push_host'] = "TODO: Set to 'http://mygemserver.com'"
+    spec.metadata['allowed_push_host'] = 'https://rubygems.org'
   else
     raise 'RubyGems 2.0 or newer is required to protect against ' \
       'public gem pushes.'
