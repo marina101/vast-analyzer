@@ -19,22 +19,24 @@ Or install it yourself as:
 Simply pass your xml vast url to the parser object to instantiate a parser linked to that vast:
 
 ```ruby
-parser = VastAnalyzer::Parser.new('https://www.vastexample.xml')
+result = VastAnalyzer::parse('https://www.vastexample.xml')
 ```
 
-To categorize whether your vast contains vpaid, flash, and/or js, simply call `categorize` on it:
+You can then check attributes of the result:
 
 ```ruby
-parser.categorize[:vpaid_status]
+result.vpaid_status
+=> 'flash_js_vpaid'
+
+result.skippable?
+=> false
 ```
 
-It will return one of four possible options: 'flash_js_vpaid', 'flash_vpaid', 'js_vpaid', 'neither'
-
-Initializing a parser or calling categorize may also return an error subtype of the Error class if there is a problem with the url or the wrapper redirect url, if its not a vast link, or if the wrapper redirects more than five times.
+Vpaid status will return one of four options: 'flash_js_vpaid', 'flash_vpaid', 'js_vpaid', 'neither'
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. You must also run `git submodule init` and `git submodule update` to initialize the submodules, that work with rubocop. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment. 
+After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment. 
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
