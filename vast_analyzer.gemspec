@@ -4,9 +4,9 @@ lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'vast_analyzer/version'
 
-Gem::Specification.new 'vast_analyzer', '1.0.3' do |spec|
+Gem::Specification.new 'vast_analyzer', '1.0.4' do |spec|
   spec.name = 'vast_analyzer'
-  spec.version = '1.0.3'
+  spec.version = '1.0.4'
   spec.authors = ['Marina Chirchikova']
 
   spec.summary = 'A VAST analyzer that autodetects VPAID, flash, and js in VAST media files'
