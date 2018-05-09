@@ -4,9 +4,9 @@ lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'vast_analyzer/version'
 
-Gem::Specification.new 'vast_analyzer', '1.0.4' do |spec|
+Gem::Specification.new do |spec|
   spec.name = 'vast_analyzer'
-  spec.version = '1.0.4'
+  spec.version = VastAnalyzer::VERSION
   spec.authors = ['Marina Chirchikova']
 
   spec.summary = 'A VAST analyzer that autodetects VPAID, flash, and js in VAST media files'
@@ -30,8 +30,8 @@ Gem::Specification.new 'vast_analyzer', '1.0.4' do |spec|
   spec.require_paths = ['lib']
 
   spec.required_ruby_version = '>= 2.3.0'
-  spec.add_runtime_dependency 'bundler', '~> 1.13'
-  spec.add_runtime_dependency 'rake', '~> 10.0'
+  spec.add_development_dependency 'bundler', '~> 1.16'
+  spec.add_development_dependency 'rake', '~> 12.0'
   spec.add_development_dependency 'minitest', '~> 5.0'
   spec.add_runtime_dependency 'nokogiri', '>= 1.8.1'
   spec.add_development_dependency 'rubocop', '0.39.0'
