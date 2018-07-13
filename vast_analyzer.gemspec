@@ -34,7 +34,7 @@ Gem::Specification.new 'vast_analyzer', '1.0.4' do |spec|
   spec.add_runtime_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'minitest', '~> 5.0'
   spec.add_runtime_dependency 'nokogiri', '>= 1.8.1'
-  spec.add_development_dependency 'rubocop', '0.39.0'
+  spec.add_development_dependency 'rubocop', '~> 0.49.0'
   spec.add_development_dependency 'vcr'
   spec.add_development_dependency 'webmock'
   spec.add_development_dependency 'minitest-vcr'
